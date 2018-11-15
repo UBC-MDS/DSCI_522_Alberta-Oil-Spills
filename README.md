@@ -59,9 +59,14 @@ Use supervised machine learning to create a decision tree model that will take f
 4. source (well, pipeline, etc) 
 5. type of substance released 6. volume released
 
-**Target Options:** 1. Equipment Failure 2. Operator Error
+**Target Options:** 
+1. Equipment Failure 
+2. Operator Error
 
 Analysis Presentation
 ---------------------
 
-We will have a series of graphics, including: 1. The decision tree that shows how the model is making the decision 2. Supporting graphs that show which features are most predictive of the targets 3. A table that shows the accuracy of our model predictions
+We will have a series of graphics, including: 
+1. The decision tree that shows how the model is making the decision 
+2. Supporting graphs that show which features are most predictive of the targets 
+3. A table that shows the accuracy of our model predictions

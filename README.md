@@ -5,7 +5,7 @@ Contributors
 ------------
 
 -   `Alycia Butterworth`: [alyciakb](https://github.com/alyciakb)
--   `Huijue (Juno) Chen`: [hjchen](https://github.com/hjchen)
+-   `Huijue (Juno) Chen`: [huijuechen](https://github.com/huijuechen)
 
 Latest
 ------
@@ -22,20 +22,6 @@ We are using the dataset "Alberta Oil Spills 1975-2013" from Energy Resources Co
 
 ``` r
 oil_spills <- as.tibble(read_csv("data/AlbertaOilSpills_1975-2013.csv"))
-```
-
-    ## Parsed with column specification:
-    ## cols(
-    ##   date = col_character(),
-    ##   cause = col_character(),
-    ##   source = col_character(),
-    ##   location = col_character(),
-    ##   substance = col_character(),
-    ##   volume = col_double(),
-    ##   volume_units = col_character()
-    ## )
-
-``` r
 print(oil_spills)
 ```
 
@@ -66,7 +52,12 @@ Analysis Plan
 
 Use supervised machine learning to create a decision tree model that will take five features and output a cause.
 
-**Features:** 1. spill location 2. company 3. month 4. source (well, pipeline, etc) 5. type of substance released 6. volume released
+**Features:** 
+1. spill location 
+2. company 
+3. month 
+4. source (well, pipeline, etc) 
+5. type of substance released 6. volume released
 
 **Target Options:** 1. Equipment Failure 2. Operator Error
 

@@ -18,55 +18,55 @@ Data Set
 
 We are using the dataset "Alberta Oil Spills 1975-2013" from Energy Resources Conservation Board (ERCB), provided by the City of Edmonton. The dataset can be found [online here.](https://data.edmonton.ca/Environmental-Services/Alberta-Oil-Spills-1975-2013/ek45-xtjs)
 
-**To load the data set in R:**
+**To load the data set in Python:**
 
-``` r
-oil_spills <- as.tibble(read_csv("data/AlbertaOilSpills_1975-2013.csv"))
-print(oil_spills)
+```Python
+import pandas as pd
+
+oil_spills = pd.read_csv("data/AlbertaOilSpills_1975-2013.csv") 
+print(oil_spills.head(10))
 ```
+![Oil Spills Data Frame](img/data_asDF.png)
 
-    ## # A tibble: 15,351 x 7
-    ##    date      cause      source      location substance volume volume_units
-    ##    <chr>     <chr>      <chr>       <chr>    <chr>      <dbl> <chr>       
-    ##  1 July 22 … Operator … Multiphase… Midnapo… <NA>        NA   <NA>        
-    ##  2 March 02… Operator … Unknown     Midnapo… <NA>        NA   <NA>        
-    ##  3 March 07… Operator … Multiphase… Midnapo… <NA>        NA   <NA>        
-    ##  4 12/8/2003 Equipment… Oil Well    RED DEER Propane      0.1 103m3       
-    ##  5 December… Operator … Natural Ga… Wainwri… <NA>        NA   <NA>        
-    ##  6 December… Operator … Water Pipe… Wainwri… <NA>        NA   <NA>        
-    ##  7 1/4/2008  Operator … Unknown     Red Deer Condensa…    0.1 m3          
-    ##  8 March 02… Operator … Other Pipe… RED DEER <NA>        NA   <NA>        
-    ##  9 January … Operator … Sour Gas P… Red Deer <NA>        NA   <NA>        
-    ## 10 6/12/2007 Equipment… Oil Well    Red Deer Air          0.1 103m3       
-    ## # ... with 15,341 more rows
+-----------------------------
 
 Question for Initial Analysis
 -----------------------------
 
-Can we accurately predict the cause of oil spills (as either Equipment Failure or Operator Error) in Alberta based on the incident features: spill location, company, month, type of substance released and volume released?
+Are we able to predict with 90% or more accuracy whether an Alberta oil spill is caused by equipment failure or operator error when given the inputs: spill location, time of year (month), source (well, pipeline, etc), type of substance spilled and volume spilled?
 
-*This is a predictive question.*
+Given the following inputs: spill location, time of year (month), source (well, pipeline, etc), type of substance spilled and volume spilled, are we able to predict with 90% or more accuracy whether an Alberta oil spill is caused by equipment failure or operator error?
+
+*This is predictive? Or exploratory using predictive mechanisms?*
+
+-----------------------------
 
 Analysis Plan
 -------------
 
-Use supervised machine learning to create a decision tree model that will take five features and output a cause.
+First, we will clean our data set to only use data points that have all the necessary input and output data. We will then create five graphs, one for each feature. The graphs will have two sets of data displayed: how the feature relates to target 1 (Equipment Failure) and how the feature relates to target 2 (Operator Error). If all of the graphs show little differences between those two sets of data, we can expect that they are not indicitive of the cause of the oil spill and that our model will not be accurate in predicting the target.
 
-**Features:** 
-1. spill location 
-2. company 
-3. month 
-4. source (well, pipeline, etc) 
-5. type of substance released 6. volume released
+Regardless, we will then create a supervised learning decision tree model that will take the following five features and output one of the following targets:
 
-**Target Options:** 
-1. Equipment Failure 
-2. Operator Error
+**Features:**
+  1. spill location
+  2. time of year (month)
+  3. source (well, pipeline, etc)
+  4. type of substance released
+  5. volume released
+
+**Target Options:**
+  1. Equipment Failure
+  2. Operator Error
+  
+The next step is to test the model using the same data set to see if the model predicts the correct target. Creating a dataframe that compares the true targets to the predicted targets, we can calculate and communicate the accuracy of our model.
+
+-----------------------------
 
 Analysis Presentation
 ---------------------
 
-We will have a series of graphics, including: 
-1. The decision tree that shows how the model is making the decision 
-2. Supporting graphs that show which features are most predictive of the targets 
-3. A table that shows the accuracy of our model predictions
+We will have the following series of graphics to present with our written analysis:
+ 1. Graphs that show how each feature relates to each target
+ 2. The decision tree that shows how the model is making the decision
+ 3. A table that shows the accuracy of our model predictions

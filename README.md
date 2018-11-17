@@ -1,4 +1,4 @@
-ALberta Oil Spills Analysis
+Alberta Oil Spills Analysis
 ================
 
 Contributors

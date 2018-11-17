@@ -5,7 +5,7 @@ Contributors
 ------------
 
 -   `Alycia Butterworth`: [alyciakb](https://github.com/alyciakb)
--   `Huijue (Juno) Chen`: [hjchen](https://github.com/hjchen)
+-   `Huijue (Juno) Chen`: [huijuechen](https://github.com/huijuechen)
 
 Latest
 ------

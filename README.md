@@ -1,4 +1,4 @@
-DSCI 522
+ALberta Oil Spills Analysis
 ================
 
 Contributors

@@ -68,7 +68,9 @@ Depending on whether the factor is numerical or categorical, we will calculate t
 
 Next we will start our hypothesis testing.
 
-Each hypothesis test will have the following null and alternative hypotheses: *H*<sub>0</sub>: There are no differences between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error. *H*<sub>*A*</sub>: There is a difference between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error.
+Each hypothesis test will have the following null and alternative hypotheses: 
+- *H*<sub>0</sub>: There are no differences between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error. 
+- *H*<sub>*A*</sub>: There is a difference between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error.
 
 We will be using the simulation method to complete our hypothesis tests. For each factor we will define a sample test statistic, use permutation to create a distribution for our test statistic, plot the threshold quantile lines on our distribution graph (based on the selected alpha value), and plot our sample test statistic. We will calculate the p-value and compare it to our alpha value.
 

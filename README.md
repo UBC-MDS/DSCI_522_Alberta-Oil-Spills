@@ -20,9 +20,8 @@ We are using the dataset "Alberta Oil Spills 1975-2013" from Energy Resources Co
 
 **To load the data set in R:**
 
-``` r
-oil_spills <- as_tibble(read.csv("data/AlbertaOilSpills_1975-2013.csv"))
-print(oil_spills)
+```
+Rscript script/import_data.R
 ```
 
     ## # A tibble: 15,351 x 7

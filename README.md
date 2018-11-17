@@ -47,12 +47,6 @@ Are there differences in the spill location, time of year (month), source (well,
 
 *This is an exploratory question, the purpose of it is to determine which, if any, factors are indicitive of the cause of an oil spill in Alberta. If we find there to be a meaningful relationship between any of the factors and the cause of the spill, this analysis could serve as a starting point for further testing and hypotheses.*
 
-Are we able to predict with 90% or more accuracy whether an Alberta oil spill is caused by equipment failure or operator error when given the inputs: spill location, time of year (month), source (well, pipeline, etc), type of substance spilled and volume spilled?
-
-Given the inputs: spill location, time of year (month), source (well, pipeline, etc), type of substance spilled and volume spilled, are we able to predict wth 90% or more accuracy whether an Alberta oil spill is caused by equipment failure or operator error?
-
-*This is an exploratory question using predictive mechanisms?*
-
 Analysis Plan
 -------------
 

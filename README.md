@@ -18,7 +18,7 @@ Data Set
 
 We are using the dataset "Alberta Oil Spills 1975-2013" from Energy Resources Conservation Board (ERCB), provided by the City of Edmonton. The dataset can be found [online here.](https://data.edmonton.ca/Environmental-Services/Alberta-Oil-Spills-1975-2013/ek45-xtjs)
 
-**[To load the data set in R:](src/import_data.R)**
+**To load the data set in R using the [R script](src/import_data.R)**
 
 ```
 Rscript script/import_data.R

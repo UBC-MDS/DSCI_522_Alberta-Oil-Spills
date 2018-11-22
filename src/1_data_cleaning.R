@@ -27,9 +27,9 @@ oil_spills <- oil_spills %>%
   
 #' 4. Group the sources into 4 different groups, `pipeline`, `battery`, `well`, and `other`,
 #'    Drop `other`
-       mutate(source = if_else(str_detect(source, "Well"), "Well",
-                       if_else(str_detect(source, "Pipeline"), "Pipeline",
-                       if_else(str_detect(source, "Batt"),"Battery", "Other")))) %>% 
+       mutate(source = if_else(str_detect(source, "Well"), "well",
+                       if_else(str_detect(source, "Pipeline"), "pipeline",
+                       if_else(str_detect(source, "Batt"),"battery", "Other")))) %>% 
        filter(source != "Other") %>%
 
 #' 5. Group the substance into 4 different groups, `water`, `oil`, `gas`, and `other`

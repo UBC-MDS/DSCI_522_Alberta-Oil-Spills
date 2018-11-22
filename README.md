@@ -1,11 +1,11 @@
-DSCI 522
+Alberta Oil Spills Analysis
 ================
 
 Contributors
 ------------
 
 -   `Alycia Butterworth`: [alyciakb](https://github.com/alyciakb)
--   `Huijue (Juno) Chen`: [hjchen](https://github.com/hjchen)
+-   `Huijue (Juno) Chen`: [huijuechen](https://github.com/huijuechen)
 
 Latest
 ------
@@ -18,11 +18,10 @@ Data Set
 
 We are using the dataset "Alberta Oil Spills 1975-2013" from Energy Resources Conservation Board (ERCB), provided by the City of Edmonton. The dataset can be found [online here.](https://data.edmonton.ca/Environmental-Services/Alberta-Oil-Spills-1975-2013/ek45-xtjs)
 
-**To load the data set in R:**
+**To load the data set in R using the [R script](src/import_data.R):**
 
-``` r
-oil_spills <- as_tibble(read.csv("data/AlbertaOilSpills_1975-2013.csv"))
-print(oil_spills)
+```
+Rscript script/import_data.R
 ```
 
     ## # A tibble: 15,351 x 7
@@ -47,12 +46,6 @@ Are there differences in the spill location, time of year (month), source (well,
 
 *This is an exploratory question, the purpose of it is to determine which, if any, factors are indicitive of the cause of an oil spill in Alberta. If we find there to be a meaningful relationship between any of the factors and the cause of the spill, this analysis could serve as a starting point for further testing and hypotheses.*
 
-Are we able to predict with 90% or more accuracy whether an Alberta oil spill is caused by equipment failure or operator error when given the inputs: spill location, time of year (month), source (well, pipeline, etc), type of substance spilled and volume spilled?
-
-Given the inputs: spill location, time of year (month), source (well, pipeline, etc), type of substance spilled and volume spilled, are we able to predict wth 90% or more accuracy whether an Alberta oil spill is caused by equipment failure or operator error?
-
-*This is an exploratory question using predictive mechanisms?*
-
 Analysis Plan
 -------------
 
@@ -68,7 +61,9 @@ Depending on whether the factor is numerical or categorical, we will calculate t
 
 Next we will start our hypothesis testing.
 
-Each hypothesis test will have the following null and alternative hypotheses: *H*<sub>0</sub>: There are no differences between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error. *H*<sub>*A*</sub>: There is a difference between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error.
+Each hypothesis test will have the following null and alternative hypotheses: 
+- *H*<sub>0</sub>: There are no differences between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error. 
+- *H*<sub>*A*</sub>: There is a difference between the \[factor\] when the cause of an Alberta oil spill is equipment failure or operator error.
 
 We will be using the simulation method to complete our hypothesis tests. For each factor we will define a sample test statistic, use permutation to create a distribution for our test statistic, plot the threshold quantile lines on our distribution graph (based on the selected alpha value), and plot our sample test statistic. We will calculate the p-value and compare it to our alpha value.
 

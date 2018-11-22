@@ -6,5 +6,6 @@
 #
 # Usage: Rscript import_data.R
 
+library(tidyverse)
 oil_spills <- as_tibble(read.csv("data/AlbertaOilSpills_1975-2013.csv"))
 print(oil_spills)

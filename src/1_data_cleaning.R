@@ -1,3 +1,6 @@
+# 1_data_cleaning.R
+# Huijue Chen, Nov. 22, 2018 
+#
 # This script reads a .R data import file as input and outputs a cleaned data .csv file.
 # It takes an input filename and output filename as variable arguments.
 #

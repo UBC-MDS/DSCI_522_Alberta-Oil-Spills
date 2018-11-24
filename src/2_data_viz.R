@@ -1,3 +1,6 @@
+# 1_data_viz.R
+# Alycia Butterworth, Nov. 22, 2018 
+#
 # This script creates graphs and a table to visualize the Alberta Oil Spills data.
 # It reads the clean_data.csv as input and outputs graph images as PNGs.
 # It takes an input filename, an output filename, and a column category 

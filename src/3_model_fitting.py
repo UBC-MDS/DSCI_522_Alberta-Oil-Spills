@@ -101,6 +101,11 @@ def main():
     feature_df = pd.DataFrame([fea_importance], columns = feature_cols)
     feature_df.to_csv(output_file_path + "feature_compare.csv")
 
+    #4.3 Export the model CV score to CSV
+    score_d = {"The CV score for the model is": [cv_score]}
+    score_df = pd.DataFrame(score_d)
+    score_df.to_csv(output_file_path + "model_score.csv")
+
 
 if __name__ == "__main__":
     main()

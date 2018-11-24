@@ -16,27 +16,46 @@ The data we used in this analysis was compiled and managed by the Energy Resourc
 
 After cleaning our data set, we had 10,985 observations and produced the following table:
 
+|    X| date       | cause             | source   | location     | substance |  volume|  year\_quarter|
+|----:|:-----------|:------------------|:---------|:-------------|:----------|-------:|--------------:|
+|    1| 1/28/2013  | Operator Error    | well     | WAINWRIGHT   | oil       |       1|              1|
+|    2| 11/10/2012 | Equipment Failure | battery  | BONNYVILLE   | water     |       2|              4|
+|    3| 3/29/2007  | Equipment Failure | pipeline | MEDICINE HAT | gas       |       2|              1|
+|    4| 3/21/2008  | Equipment Failure | pipeline | MEDICINE HAT | gas       |       2|              1|
+|    5| 4/3/2008   | Equipment Failure | pipeline | MEDICINE HAT | gas       |       2|              2|
+|    6| 11/2/2005  | Operator Error    | pipeline | MEDICINE HAT | oil       |       1|              4|
+
 *Table 1: A Sample of the Alberta Oil Spills Cleaned Data Set*
 
 ------------------------------------------------------------------------
 
 The majority of the spills (9,082 observations) were as a result of equipment failure, and the remaining 1,903 were a result of operator error.
 
-<img src="../img/cause_graph.png" alt="Fig 1: Spills by Cause Graph" width="400"/>
+<img src="../img/cause_graph.png" alt="Fig 1: Spills by Cause Graph" width="500"/>
 
 *Figure 1: Overall Number of Spills by Each Cause Type*
 
 Due to the large difference in number of equipment failure versus operator error caused spills, we looked at proportions to visualize each factor in a comparative way. For example, on the location graph below you can see that almost 24% of all operator error caused spills occur in Bonnyville, whereas only 10% of all equipment failure caused spills occur in Bonnyville.
 
-![Fig 2: Location Graph](../img/location_graph.png) *Figure 2: Proportions of spills of each cause type by field house location.*
+<img src="../img/location_graph.png" alt="Fig 2: Location Graph" width="500"/>
 
-![Fig 3: Time of Year Graph](../img/time_of_year_graph.png) *Figure 3: Proportions of spills of each cause type by the quarter of the year that it occured.*
+*Figure 2: Proportions of spills of each cause type by field house location.*
 
-![Fig: 4: Source of Spill Graph](../img/source_graph.png) *Figure 4: Proportions of spills of each cause type by the source of the spill.*
+<img src="../img/time_of_year_graph.png" alt="Fig 3: Time of Year Graph" width="500"/>
 
-![Fig 5: Substance Spilled Graph](../img/substance_graph.png) *Figure 5: Proportions of spills of each cause type by the substance spilled.*
+*Figure 3: Proportions of spills of each cause type by the quarter of the year that it occured.*
 
-![Fig 6: Volume Spilled Graph](../img/volume_graph.png) *Figure 6: Proportions of spills of each cause type by the volume spilled*
+<img src="../img/source_graph.png" alt="Fig: 4: Source of Spill Graph" width="500"/>
+
+*Figure 4: Proportions of spills of each cause type by the source of the spill.*
+
+<img src="../img/substance_graph.png" alt="Fig 5: Substance Spilled Graph" width="500"/>
+
+*Figure 5: Proportions of spills of each cause type by the substance spilled.*
+
+<img src="../img/volume_graph.png" alt="Fig 6: Volume Spilled Graph" width="500"/>
+
+*Figure 6: Proportions of spills of each cause type by the volume spilled*
 
 **Note:** We divided the volume factor into only two groups: A "small" spill that resulted in 0.1 to 10*m*<sup>3</sup> volume of a substance being spilled or a "large" spill that resulted in over 10*m*<sup>3</sup> volume being spilled.
 
@@ -55,10 +74,22 @@ We produced the following decision tree:
 
 The results of our test
 
+|  The.CV.score.for.the.model.is|
+|------------------------------:|
+|                      0.8310169|
+
 The Results
 -----------
 
 The analysis calculated the gini scores of each of the five factors and ranked them as most predictive to least:
+
+|  Rank| Factor        |
+|-----:|:--------------|
+|     1| source        |
+|     2| location      |
+|     3| substance     |
+|     4| volume        |
+|     5| year\_quarter |
 
 *Table 1: Ranking the Most Predictive to Least Predictive Factors*
 

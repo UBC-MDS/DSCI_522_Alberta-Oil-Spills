@@ -25,7 +25,7 @@ The data we used in this analysis was compiled and managed by the Energy Resourc
 
 After cleaning our data set, we had 10,985 observations and produced the following table:
 
-```{r data, include=FALSE}
+```{r data, echo=FALSE}
 oil_spills <- read.csv("../data/clean_data.csv")
 knitr::kable(head(oil_spills))
 ```
@@ -38,25 +38,34 @@ knitr::kable(head(oil_spills))
 
 The majority of the spills (9,082 observations) were as a result of equipment failure, and the remaining 1,903 were a result of operator error.
 
-<img src="../img/cause_graph.png" alt="Fig 1: Spills by Cause Graph" width="400"/>
+<img src="../img/cause_graph.png" alt="Fig 1: Spills by Cause Graph" width="500"/>
 
 *Figure 1: Overall Number of Spills by Each Cause Type*
 
 Due to the large difference in number of equipment failure versus operator error caused spills, we looked at proportions to visualize each factor in a comparative way. For example, on the location graph below you can see that almost 24% of all operator error caused spills occur in Bonnyville, whereas only 10% of all equipment failure caused spills occur in Bonnyville.
 
-![Fig 2: Location Graph](../img/location_graph.png)
+<img src="../img/location_graph.png" alt="Fig 2: Location Graph" width="500"/>
+
 *Figure 2: Proportions of spills of each cause type by field house location.*
 
-![Fig 3: Time of Year Graph](../img/time_of_year_graph.png)
+
+<img src="../img/time_of_year_graph.png" alt="Fig 3: Time of Year Graph" width="500"/>
+
 *Figure 3: Proportions of spills of each cause type by the quarter of the year that it occured.*
 
-![Fig: 4: Source of Spill Graph](../img/source_graph.png)
+
+<img src="../img/source_graph.png" alt="Fig: 4: Source of Spill Graph" width="500"/>
+
 *Figure 4: Proportions of spills of each cause type by the source of the spill.*
 
-![Fig 5: Substance Spilled Graph](../img/substance_graph.png)
+
+<img src="../img/substance_graph.png" alt="Fig 5: Substance Spilled Graph" width="500"/>
+
 *Figure 5: Proportions of spills of each cause type by the substance spilled.*
 
-![Fig 6: Volume Spilled Graph](../img/volume_graph.png)
+
+<img src="../img/volume_graph.png" alt="Fig 6: Volume Spilled Graph" width="500"/>
+
 *Figure 6: Proportions of spills of each cause type by the volume spilled*
 
 **Note:** We divided the volume factor into only two groups: A "small" spill that resulted in 0.1 to 10$m^3$ volume of a substance being spilled or a "large" spill that resulted in over 10$m^3$ volume being spilled.
@@ -75,7 +84,7 @@ We produced the following decision tree:
 
 The results of our test
 
-```{r model accuracy, include=FALSE}
+```{r model accuracy, echo=FALSE}
 model_accuracy <- read.csv("../results/model_score.csv")
 knitr::kable(model_accuracy[2])
 ```
@@ -86,7 +95,7 @@ knitr::kable(model_accuracy[2])
 
 The analysis calculated the gini scores of each of the five factors and ranked them as most predictive to least:
 
-```{r rank, include=FALSE}
+```{r rank, echo=FALSE}
 rank <- read.csv("../results/feature_compare.csv")
 rank <- colnames(rank[2:6]) 
 rank <- data.frame('Rank' = c(1, 2, 3, 4, 5), 'Factor' = rank)

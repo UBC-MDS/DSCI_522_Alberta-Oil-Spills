@@ -29,7 +29,7 @@ main <- function() {
     cause_graph <- oil_spills %>% ggplot(aes(cause, fill = cause)) + 
     geom_bar(stat = 'count') +
     labs(x = "Cause of Spill", y = "Number of Spills",
-         title = "Spills at Alberta Oil Fields, 2002-2014") +
+         title = "Spills at Alberta Oil Fields, 2002-2013") +
     theme_minimal() +
     theme(legend.position = "none")
 
@@ -47,7 +47,7 @@ main <- function() {
       summarize(count = n()) %>% 
       left_join(oil_spills %>%  group_by(cause) %>% summarize(total_count = n())) %>% 
       mutate(prop = count/total_count)
-  
+    
     #' Create the proportions graphs
     proportions %>% ggplot(aes(x = factor(!!feature), y = prop, fill = cause)) + 
      geom_bar(width = 0.6, position = position_dodge(width = 0.6), stat = 'identity') +
@@ -59,18 +59,18 @@ main <- function() {
 
   #' Call the `feature_graph` function for all five features
   #' Graph `location` feature
-  else if(category == "location") {
+  if(category == "location") {
     location_graph <- feature_graph(location) + 
       xlab("Location") +
       ggtitle("Proportions of Spills by Location") +
       theme(axis.text.x = element_text(angle = 90))
-
+  
     #' Save the `location` proportions graph as an output file
     ggsave(output, width = 4, height = 4)
   }
   
   #' Graph `year_quarter` feature
-  else if(category == "quarter") {
+  if(category == "time") {
     year_quarter_graph <- feature_graph(year_quarter) + 
       scale_x_discrete(labels=c("Q1\nJan-Mar", "Q2\nApr-Jun", 
                                 "Q3\nJul-Sep", "Q4\nOct-Dec")) +
@@ -82,7 +82,7 @@ main <- function() {
     }
   
   #' Graph `source` feature
-  else if(category == "source") {
+  if(category == "source") {
     source_graph <- feature_graph(source) + 
       xlab("Spill Source") +
       ggtitle("Proportions of Spills by Spill Source")
@@ -110,7 +110,8 @@ main <- function() {
     
     #' Save the `volume` proportions graph as an output file
     ggsave(output, width = 4, height = 4)
-    }
+  }
+  
 }
 
 # call main function

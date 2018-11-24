@@ -1,5 +1,7 @@
 ---
 title: "Alberta Oil Spills Final Report"
+authors: "Alycia Butterworth and Huijue Chen"
+date: "Nov. 24, 2018"
 output: github_document
 ---
 
@@ -9,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-The purpose of this project is to determine the factors that are most predictive of the cause of spill incidents in the Alberta oil industry. 
+The purpose of this project is to determine the three factors that are most predictive of the cause of spill incidents in the Alberta oil industry. 
 
 ---
 Why is this important? External research
@@ -23,7 +25,7 @@ The data we used in this analysis was compiled and managed by the Energy Resourc
 
 After cleaning our data set, we had 10,985 observations and produced the following table:
 
-```{r}
+```{r data, include=FALSE}
 oil_spills <- read.csv("../data/clean_data.csv")
 knitr::kable(head(oil_spills))
 ```
@@ -36,62 +38,70 @@ knitr::kable(head(oil_spills))
 
 The majority of the spills (9,082 observations) were as a result of equipment failure, and the remaining 1,903 were a result of operator error.
 
-![alt tag]("../img/cause_graph.png")
+<img src="../img/cause_graph.png" alt="Fig 1: Spills by Cause Graph" width="400"/>
 
-*Figure 1: Number of Spills by Each Cause*
+*Figure 1: Overall Number of Spills by Each Cause Type*
 
 Due to the large difference in number of equipment failure versus operator error caused spills, we looked at proportions to visualize each factor in a comparative way. For example, on the location graph below you can see that almost 24% of all operator error caused spills occur in Bonnyville, whereas only 10% of all equipment failure caused spills occur in Bonnyville.
 
-![alt tag]("../img/location_graph.png")
-*Figure 2: Proportions of Spills by Location*
+![Fig 2: Location Graph](../img/location_graph.png)
+*Figure 2: Proportions of spills of each cause type by field house location.*
 
-![alt tag]("../img/time_of_year_graph.png")
-*Figure 3: Proportions of Spills by the Time of Year*
+![Fig 3: Time of Year Graph](../img/time_of_year_graph.png)
+*Figure 3: Proportions of spills of each cause type by the quarter of the year that it occured.*
 
-![alt tag]("../img/source_graph.png")
-*Figure 4: Proportions of Spills by the Source of the Spill*
+![Fig: 4: Source of Spill Graph](../img/source_graph.png)
+*Figure 4: Proportions of spills of each cause type by the source of the spill.*
 
-![alt tag]("../img/substance_graph.png")
-*Figure 5: Proportions of Spills by the Substance Spilled*
+![Fig 5: Substance Spilled Graph](../img/substance_graph.png)
+*Figure 5: Proportions of spills of each cause type by the substance spilled.*
 
-![alt tag]("../img/volume_graph.png")
-*Figure 6: Proportions of Spills by the Volume Spilled*
+![Fig 6: Volume Spilled Graph](../img/volume_graph.png)
+*Figure 6: Proportions of spills of each cause type by the volume spilled*
 
-*Note that we divided the volume factor into only two groups: A "small" spill that resulted in 0.1 to 10$m^3$ volume of a substance being spilled or a "large" spill that resulted in over 10$m^3$ volume being spilled.*
+**Note:** We divided the volume factor into only two groups: A "small" spill that resulted in 0.1 to 10$m^3$ volume of a substance being spilled or a "large" spill that resulted in over 10$m^3$ volume being spilled.
 
 We used only two volume groups because over 60% of our data fall into the "small" category and we did not want to have the number of observations per volume group to be highly skewed. This is a drawback of our analysis, because the "large" spill category includes spills that are anywhere from 10.1$m^3$ up to the largest spill in our data set, an equipment failure caused pipeline incident in St. Albert in 2009 that resulted in 25 million $m^3$ of gas production being spilled. Obviously, those two spills are of a very different magnitude, but to keep the volume groups simple, fall into the same category in this analysis.
 
 ## The Analysis
 
-In order to rank the predictive quality of our factors, we first fit a decision tree model. We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used cross validation to test both the training and test accuracy of each model. When the user runs the command line arguments in their terminal for the script _______, the optimal depth is chosen by the program and both the depth and testing accuracy are printed to the terminal. If you would like to see the graphical comparison of model accuracy at the different depths, go to: `results/depth_compare.png`.
+In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results). We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation to test both the training and test accuracy of each model. When the user runs the command line arguments in their terminal for the script [3_data_fitting.py](../src/3_data_fitting.py), the optimal depth is chosen by the program and both the depth and testing accuracy are printed to the terminal. You can see the graphical comparison of model accuracy at the different depths at [results/depth_compare](../results/depth_compare.png).
 
 We produced the following decision tree: 
 
-![alt tag]("../results/spills_decision_tree.png")
+![Fig 7: Decision Tree](../results/oil_spills_model.png)
 
-*Figure 8: Decision Tree for determining cause type of an oil spill, based on the factors: location, time of year, source of spill, substance spilled, and volume spilled.*
+*Figure 7: Decision Tree for determining cause type of an oil spill, based on the factors: location, time of year, source of spill, substance spilled, and volume spilled.*
 
-To fit the decision tree, we represented each of our categorical variables as numbers. If you are interested in which numbers are associated with which variable, you can find the data in csv files within the `results` folder.
+The results of our test
+
+```{r model accuracy, include=FALSE}
+model_accuracy <- read.csv("../results/model_score.csv")
+knitr::kable(model_accuracy[2])
+```
+
 
 
 ## The Results
 
 The analysis calculated the gini scores of each of the five factors and ranked them as most predictive to least:
 
-```{r}
+```{r rank, include=FALSE}
 rank <- read.csv("../results/feature_compare.csv")
+rank <- colnames(rank[2:6]) 
+rank <- data.frame('Rank' = c(1, 2, 3, 4, 5), 'Factor' = rank)
 knitr::kable(head(rank))
 ```
 
-*Table 7: Ranking the Most Predictive to Least Predictive Factors*
+*Table 1: Ranking the Most Predictive to Least Predictive Factors*
 
-Our results show that the best predictor in our analysis was ____. This result is compatible with our data visualization at the start of this report. You can see in Figure 4 that there are large differences between the cause types for each variable within the 'source' of spill category.
+Our results show that the best predictor in our analysis was the source of the spill. This result is compatible with our data visualization at the start of this report. You can see in Figure 4 that there are large differences between the two cause types for each variable within the `source` factor.
 
-The top three predictors for determining whether the cause of a spill incident is either equipment failure or operator error are:
+The question we set out to answer with this project was: "What are the top three predictors of the cause of an oil spill incident in Alberta?"  Based on our analysis, the top predictors are:
 
-1. 
-2.
-3.
+1. Source of spill
+2. Field location of spill
+3. Type of substance spilled
 
 
 ## Limitations
@@ -101,13 +111,13 @@ We understand that our analysis has its limitations:
 - As mentioned earlier, we only divided our data into two volume groups. 
 - We did not take into consideration the quantity of oil or gas being produced or moved by the location or sources. 
 - We addressed the substance spilled and volume spilled as separate entities, but it might be useful to think of them together (e.g. is differences in the average volumes spilled of each individual substance depending on the cause?)
-- The accuracy of our model is only __%, therefore approximately every 1 in 5 predictions by our model results in an incorrect answer.
+- The accuracy of our model is 83%, therefore approximately every 1 in 5 predictions by our model results in an incorrect answer.
 - There is likely a more accurate machine learning approach to answer this question, but we haven't learned it yet.
 
 
 ## Next Steps
 
-This analysis is only a tiny sliver of information that can be learned from this data set (and related data). If we were to continue working with it, the next questions I would want to ask are:
+This analysis is only a tiny sliver of information that can be learned from this data set (and related data). If we were to continue working with it, the next questions we would like to ask are:
 
 1. Is production volume in an area a predictor of spill cause?
 2. Do spills increase or decrease linearly with production volume?

@@ -52,6 +52,7 @@ Rscript src/2_data_viz.R data/clean_data.csv img/substance_graph.png substance
 Rscript src/2_data_viz.R data/clean_data.csv img/volume_graph.png volume
 python src/3_model_fitting.py "./data/clean_data.csv"  "./results/"
 python src/4_model_viz.py "./results/" "./results/"
+sips -s format png results/oil_spills_model.pdf --out results/oil_spills_model.png
 ```
 
 

@@ -1,4 +1,4 @@
-# # 3_model_fitting.R
+# # 3_model_fitting.py
 # Huijue Chen, Nov. 22, 2018
 #
 # This script creates graphs and tables for analyzing the Alberta Oil Spills data.

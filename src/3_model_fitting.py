@@ -35,7 +35,7 @@ def main():
     input_file_path, output_file_path = get_args()
 
     # 1. Data Importing
-    oil_spills = pd.read_csv(input_file_path)
+    oil_spills = pd.read_csv(input_file_path).iloc[:, 1:]
 
 
     # 2. Categorical data mapping
@@ -100,6 +100,11 @@ def main():
     fea_importance = model.tree_.compute_feature_importances(normalize=False)
     feature_df = pd.DataFrame([fea_importance], columns = feature_cols)
     feature_df.to_csv(output_file_path + "feature_compare.csv")
+
+    #4.3 Export the model CV score to CSV
+    score_d = {"The CV score for the model is": [cv_score]}
+    score_df = pd.DataFrame(score_d)
+    score_df.to_csv(output_file_path + "model_score.csv")
 
 
 if __name__ == "__main__":

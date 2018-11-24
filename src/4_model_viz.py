@@ -1,3 +1,6 @@
+# 4_model_viz.py
+# Huijue Chen, Nov. 22, 2018
+#
 # This script creates graph to visualize the Alberta Oil Spills fitted model.
 # It reads the model 'finalized_model.sav' as input, outputs graph image to PDF
 # It takes an input file path, and an output file path as the variable arguments.
@@ -6,6 +9,7 @@ import pickle
 import graphviz
 import pandas as pd
 from sklearn import tree
+import argparse
 
 def get_args():
 

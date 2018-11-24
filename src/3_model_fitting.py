@@ -1,3 +1,6 @@
+# # 3_model_fitting.R
+# Huijue Chen, Nov. 22, 2018
+#
 # This script creates graphs and tables for analyzing the Alberta Oil Spills data.
 # It reads the clean_data.csv as input, outputs graph images as PNGs and data frames as CSVs
 # It takes an input file path, and an output file path as the variable arguments.

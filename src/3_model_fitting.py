@@ -32,7 +32,7 @@ def main():
     input_file_path, output_file_path = get_args()
 
     # 1. Data Importing
-    oil_spills = pd.read_csv(input_file_path)
+    oil_spills = pd.read_csv(input_file_path).iloc[:, 1:]
 
 
     # 2. Categorical data mapping

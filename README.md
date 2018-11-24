@@ -30,10 +30,10 @@ Usage
 
 A full report of the findings of this project is located `results/reportname`. In order to view the tables and graphics provided in the report, you must run the scripts within your terminal. The scripts are to be run in the following order:
 
-1. 1_data_cleaning.R
-2. 2_data_viz.R
-3. 3_model_fitting.py
-4. 4_model_viz.py
+1. [1_data_cleaning.R](src/1_data_cleaning.R)
+2. [2_data_viz.R](src/2_data_viz.R)
+3. [3_model_fitting.py](src/3_model_fitting.py)
+4. [4_model_viz.py](src/4_model_viz.py)
 5. ____________ rmd script
 
 ### Steps: 

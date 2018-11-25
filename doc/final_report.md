@@ -5,7 +5,9 @@ Nov. 24, 2018
 Introduction
 ------------
 
-The purpose of this project is to determine the three factors that are most predictive of the cause of spill incidents in the Alberta oil industry.
+The energy industry in Canada is massive! Canada is the 6th largest producer of energy in the world and it accounts for over 10% of our national GDP and over 20% of our exports. The largest provincial contributor to Canada's energy sector is Alberta, with its oil and gas production. The Alberta proven oil reserves are so large that Alberta ranks third in the world, behind only Venezuela and Saudi Arabia. With the large amount of production that's occurring in Alberta, there's also a large amount of spill related incidents occurring. On average, there are four incidents per day in Alberta resulting in the spilling of some type of substance. In 37 years of collecting data, between 1975 and 2013, the Energy Resources Conservation Board (ERCB) recorded over 60,000 incidents in Alberta.
+
+In more recent years, the ERCB has divided the cause of these spills into two main categories: equipment malfunction and operator (human) error. This brings us to the topic of this analysis. The purpose of our analysis is to answer the question: What are the three factors that are most predictive of the cause of spill incidents in the Alberta oil industry?
 
 The two spill causes we looked at were: Equipment Failure and Operator (human) Error. The factors we tested on were: the field house location of the spill, the time of year it occured, the source of the spill (well, pipeline or battery), the substance spilled (oil, gas production, or water), and the volume spilled.
 
@@ -72,7 +74,7 @@ We produced the following decision tree:
 
 *Figure 7: Decision Tree for determining cause type of an oil spill, based on the factors: location, time of year, source of spill, substance spilled, and volume spilled.*
 
-The results of our test
+The 10-fold cross validation test accuracy for our final decision tree was:
 
 |  The.CV.score.for.the.model.is|
 |------------------------------:|
@@ -81,7 +83,7 @@ The results of our test
 The Results
 -----------
 
-The analysis calculated the gini scores of each of the five factors and ranked them as most predictive to least:
+We used our decision tree model to calculate the gini scores for each of the five factors and ranked them as most predictive to least:
 
 |  Rank| Factor        |
 |-----:|:--------------|
@@ -104,7 +106,7 @@ The question we set out to answer with this project was: "What are the top three
 Limitations
 -----------
 
-We understand that our analysis has its limitations: - We only looked at five factors, but there are likely many other factors that relate to the cause of an oil spill. - As mentioned earlier, we only divided our data into two volume groups. - We did not take into consideration the quantity of oil or gas being produced or moved by the location or sources. - We addressed the substance spilled and volume spilled as separate entities, but it might be useful to think of them together (e.g. is differences in the average volumes spilled of each individual substance depending on the cause?) - The accuracy of our model is 83%, therefore approximately every 1 in 5 predictions by our model results in an incorrect answer. - There is likely a more accurate machine learning approach to answer this question, but we haven't learned it yet.
+We understand that our analysis has its limitations: - We only looked at five factors, but there are likely many other factors that relate to the cause of an oil spill. - The data set was missing values in many places, which meant that we are only taking into consideration spills that we have full information on and ignoring all spills that we have only partial information about. - As mentioned earlier, we only divided our data into two volume groups. - We did not take into consideration the quantity of oil or gas being produced or moved by the location or sources. - We addressed the substance spilled and volume spilled as separate entities, but it might be useful to think of them together (e.g. is differences in the average volumes spilled of each individual substance depending on the cause?) - The accuracy of our model is 83%, therefore approximately every 1 in 5 predictions by our model results in an incorrect answer. - There is likely a more accurate machine learning approach to answer this question, but we haven't learned it yet.
 
 Next Steps
 ----------
@@ -122,4 +124,7 @@ The more we understand about the factors related to spill incidents, the more we
 References
 ----------
 
-Data Source
+1.  *[Alberta Oil Spills 1975-2013](https://data.edmonton.ca/Environmental-Services/Alberta-Oil-Spills-1975-2013/ek45-xtjs)*, dataset, City of Edmonton. Retrieved: November 2018.
+2.  Young, Leslie (2013), *[Crude Awakening: 37 years of oil spills in Alberta](https://globalnews.ca/news/571494/introduction-37-years-of-oil-spills-in-alberta/)*, Global News. Retrieved: November 2018.
+3.  *[Energy and the Economy](https://www.nrcan.gc.ca/energy/facts/energy-economy/20062#L2)*, Natural Resources Canada. Retrieved: November 2018.
+4.  *[Alberta's Oil Reserves Compared to Other Countries](https://open.alberta.ca/dataset/4ad7b5c8-8fdf-42a4-bec4-e57fae9f058e/resource/e5dd5f00-5139-4b0d-ba45-4990824b81af/download/did-you-know-fact-sheet-7-sept28.pdf)*, Government of Alberta. Retrieved: November 2018.

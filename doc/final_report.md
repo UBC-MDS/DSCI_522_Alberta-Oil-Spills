@@ -9,7 +9,7 @@ The energy industry in Canada is massive! Canada is the 6th largest producer of 
 
 In more recent years, the ERCB has divided the cause of these spills into two main categories: equipment malfunction and operator (human) error. This brings us to the topic of this analysis. The purpose of our analysis is to answer the question: What are the three factors that are most predictive of the cause of spill incidents in the Alberta oil industry?
 
-The two spill causes we looked at were: Equipment Failure and Operator (human) Error. The factors we tested on were: the field house location of the spill, the time of year it occured, the source of the spill (well, pipeline or battery), the substance spilled (oil, gas production, or water), and the volume spilled.
+The two spill causes we looked at were: Equipment Failure and Operator (human) Error. The factors we tested on were: field house location of the spill, the quarter of year which it occured, the source of the spill (well, pipeline or battery), the substance spilled (oil, gas production, or water), and the volume spilled.
 
 The Data
 --------
@@ -66,7 +66,7 @@ We used only two volume groups because over 60% of our data fall into the "small
 The Analysis
 ------------
 
-In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results). We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation to test both the training and test accuracy of each model. When the user runs the command line arguments in their terminal for the script [3\_data\_fitting.py](../src/3_data_fitting.py), the optimal depth is chosen by the program and both the depth and testing accuracy are printed to the terminal. You can see the graphical comparison of model accuracy at the different depths at [results/depth\_compare](../results/depth_compare.png).
+In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation to test both the training and test accuracy of each model. When the user runs the command line arguments in their terminal for the script [3\_data\_fitting.py](../src/3_data_fitting.py), the optimal depth is chosen by the program and both the depth and testing accuracy are printed to the terminal. *You can see the graphical comparison of model accuracy at the different depths at [results/depth\_compare](../results/depth_compare.png).*
 
 We produced the following decision tree:
 
@@ -106,7 +106,13 @@ The question we set out to answer with this project was: "What are the top three
 Limitations
 -----------
 
-We understand that our analysis has its limitations: - We only looked at five factors, but there are likely many other factors that relate to the cause of an oil spill. - The data set was missing values in many places, which meant that we are only taking into consideration spills that we have full information on and ignoring all spills that we have only partial information about. - As mentioned earlier, we only divided our data into two volume groups. - We did not take into consideration the quantity of oil or gas being produced or moved by the location or sources. - We addressed the substance spilled and volume spilled as separate entities, but it might be useful to think of them together (e.g. is differences in the average volumes spilled of each individual substance depending on the cause?) - The accuracy of our model is 83%, therefore approximately every 1 in 5 predictions by our model results in an incorrect answer. - There is likely a more accurate machine learning approach to answer this question, but we haven't learned it yet.
+We understand that our analysis has its limitations:
+
+-   We only looked at five factors, but there are likely many other factors that relate to the cause of an oil spill.
+-   The data set was missing values in many places, which meant that we are only taking into consideration spills that we have full information on and ignoring all spills that we have only partial information about.
+-   We did not take into consideration the quantity of oil or gas being produced or moved by the location or sources.
+-   We addressed the substance spilled and volume spilled as separate entities, but it might be useful to think of them together (e.g. is differences in the average volumes spilled of each individual substance depending on the cause?)
+-   There is likely a more accurate machine learning approach to answer this question, but we haven't learned it yet.
 
 Next Steps
 ----------

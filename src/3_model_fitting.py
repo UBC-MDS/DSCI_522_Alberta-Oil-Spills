@@ -71,24 +71,23 @@ def main():
     for d in depth_range:
         model = DecisionTreeClassifier(max_depth=d)
         train_cv.append(np.mean(cross_val_score(model, X_train, y_train, cv=10)))
-        test_cv.append(np.mean(cross_val_score(model, X_test, y_test, cv=10)))
     max_cv = max(train_cv)
     opt_d = train_cv.index(max_cv)
 
     # 3.4 plot for the hyperparameter vs. cv scores to visualize the best hyperparameter
-    plt.plot(depth_range, train_cv, label="train")
-    plt.plot(depth_range, test_cv, label="test")
+    plt.plot(depth_range, train_cv)
     plt.xlabel("depth values")
     plt.ylabel("10-fold cross validation scores")
-    plt.legend()
     plt.savefig(output_file_path+"depth_compare.png")
     plt.close()
 
     # 3.5 Set train model with the optimal max_depth
     model = DecisionTreeClassifier(max_depth=opt_d)
     model.fit(X_train,y_train)
-    cv_score = np.mean(cross_val_score(model, X_train, y_train, cv=10))
-    print("We choose the max_depth of", opt_d, ", and the testing score is ", cv_score, " by cross validation")
+    train_score = round(model.score(X_train, y_train),4)
+    test_score= round(model.score(X_test, y_test),4)
+    print("We choose the max_depth of", opt_d, ". The training accuracy is:", train_score,
+    "\nThe testing accuracy is:", test_score)
 
 
     # 4 Exporting
@@ -101,8 +100,9 @@ def main():
     feature_df = pd.DataFrame([fea_importance], columns = feature_cols)
     feature_df.to_csv(output_file_path + "feature_compare.csv")
 
-    #4.3 Export the model CV score to CSV
-    score_d = {"The CV score for the model is": [cv_score]}
+    #4.3 Export the training and test accuracy scores to CSV
+    score_d = {" ": ["Training Accuracy", "Test Accuracy"],
+              "Score": [train_score, test_score]}
     score_df = pd.DataFrame(score_d)
     score_df.to_csv(output_file_path + "model_score.csv")
 

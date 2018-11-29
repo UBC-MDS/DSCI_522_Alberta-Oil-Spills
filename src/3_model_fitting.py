@@ -29,7 +29,7 @@ def get_args():
 
 def main():
     # Set up the random state
-    state = 9
+    state = 10
 
     # Get command line arguments
     input_file_path, output_file_path = get_args()
@@ -72,7 +72,7 @@ def main():
         model = DecisionTreeClassifier(max_depth=d)
         train_cv.append(np.mean(cross_val_score(model, X_train, y_train, cv=10)))
     max_cv = max(train_cv)
-    opt_d = train_cv.index(max_cv)
+    opt_d = train_cv.index(max_cv)+1
 
     # 3.4 plot for the hyperparameter vs. cv scores to visualize the best hyperparameter
     plt.plot(depth_range, train_cv)

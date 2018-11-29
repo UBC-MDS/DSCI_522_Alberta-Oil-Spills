@@ -5,16 +5,16 @@ Nov. 24, 2018
 Introduction
 ------------
 
-The energy industry in Canada is massive! Canada is the 6th largest producer of energy in the world and it accounts for over 10% of our national GDP and over 20% of our exports. The largest provincial contributor to Canada's energy sector is Alberta, with its oil and gas production. The Alberta proven oil reserves are so large that Alberta ranks third in the world, behind only Venezuela and Saudi Arabia. With the large amount of production that's occurring in Alberta, there's also a large amount of spill related incidents occurring. On average, there are four incidents per day in Alberta resulting in the spilling of some type of substance. In 37 years of collecting data, between 1975 and 2013, the Energy Resources Conservation Board (ERCB) recorded over 60,000 incidents in Alberta.
+The energy industry in Canada is massive! Canada is the 6th largest producer of energy in the world and energy accounts for over 10% of our national GDP and over 20% of our exports. The largest provincial contributor to Canada's energy sector is Alberta, with its oil and gas production. Alberta's 'proven oil reserves' are so large that they rank third in the world, behind only Venezuela and Saudi Arabia. With the large amount of production that's occurring in Alberta, there's also many spill related incidents occurring. On average, there are four incidents per day resulting in the spilling of some type of substance. In 37 years of collecting data, between 1975 and 2013, the Energy Resources Conservation Board (ERCB) recorded over 60,000 incidents in Alberta.
 
-In more recent years, the ERCB has divided the cause of these spills into two main categories: equipment malfunction and operator (human) error. This brings us to the topic of this analysis. The purpose of our analysis is to answer the question: What are the three factors that are most predictive of the cause of spill incidents in the Alberta oil industry?
+In more recent years, the ERCB has divided the cause of these spills into two main categories: equipment malfunction and operator (human) error. This brings us to the purpose of this analysis: to answer the question, "What are the three factors that are most predictive of the cause of spill incidents in the Alberta oil industry?"
 
 The two spill causes we looked at were: Equipment Failure and Operator (human) Error. The factors we tested on were: field house location of the spill, the quarter of year which it occured, the source of the spill (well, pipeline or battery), the substance spilled (oil, gas production, or water), and the volume spilled.
 
 The Data
 --------
 
-The data we used in this analysis was compiled and managed by the Energy Resources Conservation Board (ERCB) and spans 12 years, 2002-2013. We removed all incidents that did not have complete data about the five factors or the cause type and did not fall into our source or substance categories.
+The data we used in this analysis was compiled and managed by the Energy Resources Conservation Board (ERCB) and spans 12 years, 2002-2013. To clean the data, we removed all incidents that did not have complete data about the five features or target cause types, and did not fall into our generalized source or substance categories.
 
 After cleaning our data set, we had 10,985 observations and produced the following table:
 

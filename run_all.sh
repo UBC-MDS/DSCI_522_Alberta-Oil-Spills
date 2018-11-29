@@ -8,8 +8,8 @@
 ## Usage: bash run_all.sh
 ##################################################
 
-# step 1 Clean data
-Rscript src/1_data_cleaning.R src/import_data.R data/clean_data.csv
+# step 1 Import data and clean data
+Rscript src/1_data_cleaning.R data/AlbertaOilSpills_1975-2013.csv data/clean_data.csv
 
 # step 2 Data visualization
 Rscript src/2_data_viz.R data/clean_data.csv img/cause_graph.png cause

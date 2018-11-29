@@ -16,8 +16,8 @@ output_file <- args[2]
 
 main <- function() {
   #' Read in the data
-  source(input_file)
-
+  oil_spills <- as_tibble(read.csv(input_file))
+  
 
   #' 1. Remove all the rows with null/empty/`unkown` values (mostly in the columns of `source`, `substance`, `volume`, `volume_units`)
 

@@ -8,6 +8,7 @@
 
 #' load dependencies
 library(lubridate)
+library(tidyverse)
 
 # read in command line arguments
 args <- commandArgs(trailingOnly = TRUE)

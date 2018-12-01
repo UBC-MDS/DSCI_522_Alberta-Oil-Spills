@@ -47,7 +47,7 @@ To run this analysis yourself, the scripts need to be run in the following order
 4. Visualize the model decision tree in [4_model_viz.py](src/4_model_viz.py)
 5. Create a final report and render it in [final_report.Rmd](doc/final_report.Rmd)
 
-### Reproduce this Report:
+#### Reproduce this Report:
 
 We have provided a `Makefile` to run the all scripts in the correct order and produce all required output. Running the make file will produce: 
 
@@ -59,14 +59,11 @@ We have provided a `Makefile` to run the all scripts in the correct order and pr
 6. A visual representation of the decision tree, saved as both a pdf and a png file in the `results` folder.
 7. Rendered markdown and rendered html versions of the final analysis report, saved in the `doc` folder.
 
-### Steps:
+#### Steps:
 
 1. Clone this repo.
-
 2. Navigate to the root of this project in your terminal.
-
 3. Type the following command in your terminal:  `make all`.
-
 4. To remove files created by the  `Makefile`, type the following command in your terminal: `make clean`.
 
 

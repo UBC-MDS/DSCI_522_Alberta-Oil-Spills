@@ -1,5 +1,6 @@
 
 # Makefile
+# Authors: Alycia Butterworth, Huijue Chen
 # Date: November 28, 2018
 # Purpose: This script is to create an entire data analysis project pipline
 # Usage: clean inputs from previous saved inputs by "clean:", run all scripts by "all :"
@@ -33,7 +34,7 @@ results : data/clean_data.csv src/3_model_fitting.py
 # step 4. Decision tree visualization
 results_viz : results src/4_model_viz.py
 	python src/4_model_viz.py "./results/" "./results/"
-	
+
 # step 5. convert oil_spills_model.pdf to oil_spills_model.png
 results/oil_spills_model.png : results results_viz
 	sips -s format png results/oil_spills_model.pdf --out results/oil_spills_model.png

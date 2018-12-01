@@ -111,7 +111,7 @@ def main():
     feature_df.to_csv(output_file_path + "feature_compare.csv")
 
     #4.3 Export the training and test accuracy scores to CSV
-    score_d = {" ": ["Training Accuracy", "Test Accuracy"],
+    score_d = {"Type": ["Training Accuracy", "Test Accuracy"],
               "Score": [train_score, test_score]}
     score_df = pd.DataFrame(score_d)
     score_df.to_csv(output_file_path + "model_score.csv")

@@ -2,7 +2,7 @@
 # Makefile
 # Date: November 28, 2018
 # Purpose: This script is to create an entire data analysis project pipline
-# Usage: clean inputs from previous saved inputs by "clean:" and run all scripts by "all :"
+# Usage: clean inputs from previous saved inputs by "clean:", run all scripts by "all :"
 
 #####################################
 # Run all scripts

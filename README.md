@@ -18,6 +18,16 @@ Overview
 
 The goal of this project is to find the top predictors of the cause of an oil spill/oil operations accident in Alberta.  Using data from the [Energy Resources Conservation Board (ERCB), provided by the City of Edmonton](https://data.edmonton.ca/Environmental-Services/Alberta-Oil-Spills-1975-2013/ek45-xtjs), we reviewed spills that occured between 2002 and 2013 and fit a machine learning model (decision tree) to predict spill cause as either (1) Equipment Failure or (2) Operator Error based on five factors: (1) the field house location of the spill, (2) the time of year it occured, (3) the source of the spill (well, pipeline or battery), (4) the substance spilled (oil, gas production, or water) (5) and the volume spilled.  We were able to obtain a gini score for each factor and rate them accordingly.
 
+The we will be utilizing the following contents from the data:
+| Column name | datatype | Description |
+| --- | -- | -- |
+| cause | String | Identifier for a particular cause of spill |
+| source | String | equipment source of the spill incident| 
+| location | String | location of the spill incident| 
+| substance | String | substance of the spill incident| 
+| volume | Numeric | volume of the substance spilled (unit: cubic meter) |
+| year_quarter | Numeric | quarter of the year for when the spill occured |
+
 Our findings showed that the top three predictors for the cause of an oil spill in Alberta are:
 1. source of spill
 2. field location

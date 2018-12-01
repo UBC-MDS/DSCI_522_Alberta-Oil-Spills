@@ -47,31 +47,27 @@ To run this analysis yourself, the scripts need to be run in the following order
 4. Visualize the model decision tree in [4_model_viz.py](src/4_model_viz.py)
 5. Create a final report and render it in [final_report.Rmd](doc/final_report.Rmd)
 
+### Reproduce this Report:
 
 We have provided a `Makefile` to run the all scripts in the correct order and produce all required output. Running the make file will produce: 
 
 1. A `clean_data.csv` file that is used for the rest of the analysis.
-
 2. Six graphs, saved as png files, stored in the `img` folder that help the user visualize the data we are using for the analysis.
-
 3. Six small dataframes stored as csv files in the `results` folder.
-
 4. An image called `depth_compare.png`, that shows the results of the 10-fold cross validation, saved in the `results` folder.
-
 5. The decision tree code model, saved in the `results` folder as `final_model.sav`.
-
 6. A visual representation of the decision tree, saved as both a pdf and a png file in the `results` folder.
-
 7. Rendered markdown and rendered html versions of the final analysis report, saved in the `doc` folder.
 
-
-### To produce this report:
+### Steps:
 
 1. Clone this repo.
 
 2. Navigate to the root of this project in your terminal.
 
-3. Type the following command line argument:  `make all`
+3. Type the following command in your terminal:  `make all`.
+
+4. To remove files created by the  `Makefile`, type the following command in your terminal: `make clean`.
 
 
 

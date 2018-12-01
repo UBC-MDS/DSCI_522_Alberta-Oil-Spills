@@ -18,14 +18,16 @@ The data we used in this analysis was compiled and managed by the Energy Resourc
 
 We will use the following contents from the data:
 
-| Column name   | datatype | Description                                         |
-|---------------|----------|-----------------------------------------------------|
-| cause         | String   | Identifier for a particular cause of spill          |
-| source        | String   | Equipment source of the spill incident              |
-| location      | String   | Location of the spill incident                      |
-| substance     | String   | Substance of the spill incident                     |
-| volume        | Numeric  | Volume of the substance spilled (unit: cubic metre) |
-| year\_quarter | Numeric  | Quarter of the year for when the spill occurred     |
+| Column Names  | Data Type | Description                                         |
+|---------------|-----------|-----------------------------------------------------|
+| cause         | String    | Identifier for a particular cause of spill          |
+| source        | String    | Equipment source of the spill incident              |
+| location      | String    | Location of the spill incident                      |
+| substance     | String    | Substance of the spill incident                     |
+| volume        | Numeric   | Volume of the substance spilled (unit: cubic metre) |
+| year\_quarter | Numeric   | Quarter of the year for when the spill occurred     |
+
+*Table 1: A description of what information each of the columns in our data set contain and the type of data they are.*
 
 After cleaning our data set, we had 10,985 observations and produced the following table:
 
@@ -38,7 +40,7 @@ After cleaning our data set, we had 10,985 observations and produced the followi
 |    5| 4/3/2008   | Equipment Failure | pipeline | MEDICINE HAT | gas       |       2|              2|
 |    6| 11/2/2005  | Operator Error    | pipeline | MEDICINE HAT | oil       |       1|              4|
 
-*Table 1: A Sample of the Alberta Oil Spills Cleaned Data Set*
+*Table 2: A Sample of the Alberta Oil Spills Cleaned Data Set*
 
 ------------------------------------------------------------------------
 
@@ -75,7 +77,7 @@ A note about how we chose our spill volume groups (Figure 6) for the analysis: W
 The Analysis
 ------------
 
-In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation to test both the training and test accuracy of each model. When the user runs the command line arguments in their terminal for the script [3\_data\_fitting.py](../src/3_data_fitting.py), the optimal depth is chosen by the program and both the depth and testing accuracy are printed to the terminal. *You can see the graphical comparison of model accuracy at the different depths at [results/depth\_compare](../results/depth_compare.png).*
+In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation with the training data to pick a best depth. You can see the graphical comparison of cross-validation model accuracy at the different depths at [results/depth\_compare](../results/depth_compare.png).
 
 We produced the following decision tree *(you may need to zoom in to read the details of the tree)*:
 
@@ -85,11 +87,12 @@ We produced the following decision tree *(you may need to zoom in to read the de
 
 The training and test accuracy scores for our final decision tree were:
 
-| Type                  |                                                                                                                                                                Score|
-|:----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Training Accuracy     |                                                                                                                                                               0.8330|
-| Test Accuracy         |                                                                                                                                                               0.8252|
-| \*Table 2: The traini |  ng and test accuracy scores for the decision tree model used to determine whether an Alberta oil spill incident is caused by equipment failure or operator error.\*|
+| Type              |   Score|
+|:------------------|-------:|
+| Training Accuracy |  0.8330|
+| Test Accuracy     |  0.8252|
+
+*Table 3: The training and test accuracy scores for the decision tree model used to determine whether an Alberta oil spill incident is caused by equipment failure or operator error.*
 
 The Results
 -----------
@@ -104,7 +107,7 @@ We used our decision tree model to calculate the gini scores for each of the fiv
 |     4| volume        |
 |     5| year\_quarter |
 
-*Table 3: Ranking the five factors: location, time of year, source of spill, substance spilled, and volume of substance spilled, from most to least predictive based on their decision tree scores.*
+*Table 4: Ranking the five factors: location, time of year, source of spill, substance spilled, and volume of substance spilled, from most to least predictive based on their decision tree scores.*
 
 Our results show that the best predictor in our analysis was the source of the spill. This result is compatible with our data visualization at the start of this report. You can see in Figure 4 that there are large differences between the two cause types for each variable within the `source` factor.
 

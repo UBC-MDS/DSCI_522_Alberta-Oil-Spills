@@ -2,8 +2,22 @@
 # Huijue Chen, Nov. 22, 2018
 #
 # This script creates graphs and tables for analyzing the Alberta Oil Spills data.
-# It reads the clean_data.csv as input, outputs graph images as PNGs and data frames as CSVs
-# It takes an input file path, and an output file path as the variable arguments.
+# Input:
+#      - Clean Data: "data/clean_data.csv"
+#
+# Output:
+#      - Decision Tree Model: "results/finalized_model.sav"
+#      - Mapping: "results/cause.csv" "results/source.csv" "results/location.csv" "results/substance.csv"
+#      - Optimal hyperparameter: "results/depth_compare.png"
+#      - Model Scores: "results/model_score.csv"
+#      - Features Importance: "results/feature_compare.csv"
+#
+# Arguments:
+#     ARG1 = input file path
+#     ARG2 = output file path
+#
+# Usage:
+#     “python src/3_model_fitting.py data/clean_data.csv  results/"
 
 import numpy as np
 import pandas as pd
@@ -24,7 +38,6 @@ def get_args():
     parser.add_argument('input_file', help='Data file path')
     parser.add_argument('output_path', help='Output file path')
     args = parser.parse_args()
-
     return args.input_file, args.output_path
 
 def main():
@@ -36,7 +49,6 @@ def main():
 
     # 1. Data Importing
     oil_spills = pd.read_csv(input_file_path).iloc[:, 1:]
-
 
     # 2. Categorical data mapping
     # 2.1 Record the mapping from categorical data to numerical values in dataframes, then export to CSV
@@ -53,7 +65,6 @@ def main():
     oil_spills['source']=number.fit_transform(oil_spills['source'].astype('str'))
     oil_spills['location']=number.fit_transform(oil_spills['location'].astype('str'))
     oil_spills['substance']=number.fit_transform(oil_spills['substance'].astype('str'))
-
 
     # 3. Model Fitting
     # 3.1 Create X (i.e., features) and y (i.e., target)
@@ -89,7 +100,6 @@ def main():
     print("We choose the max_depth of", opt_d, ". The training accuracy is:", train_score,
     "\nThe testing accuracy is:", test_score)
 
-
     # 4 Exporting
     # 4.1 Export the model to file
     filename = output_file_path + 'finalized_model.sav'
@@ -105,7 +115,6 @@ def main():
               "Score": [train_score, test_score]}
     score_df = pd.DataFrame(score_d)
     score_df.to_csv(output_file_path + "model_score.csv")
-
 
 if __name__ == "__main__":
     main()

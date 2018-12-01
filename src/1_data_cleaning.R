@@ -1,9 +1,11 @@
 # 1_data_cleaning.R
-# Huijue Chen, Nov. 22, 2018 
+# Huijue Chen, Nov. 22, 2018
 #
 # This script reads a .R data import file as input and outputs a cleaned data .csv file.
 # It takes an input filename and output filename as variable arguments.
-#
+# Arguments:
+#     ARG1 = input file path
+#     ARG2 = output file path
 # Usage: Rscript src/1_data_cleaning.R
 
 #' load dependencies
@@ -18,7 +20,7 @@ output_file <- args[2]
 main <- function() {
   #' Read in the data
   oil_spills <- as_tibble(read.csv(input_file))
-  
+
 
   #' 1. Remove all the rows with null/empty/`unkown` values (mostly in the columns of `source`, `substance`, `volume`, `volume_units`)
 

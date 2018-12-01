@@ -2,8 +2,16 @@
 # Huijue Chen, Nov. 22, 2018
 #
 # This script creates graph to visualize the Alberta Oil Spills fitted model.
-# It reads the model 'finalized_model.sav' as input, outputs graph image to PDF
-# It takes an input file path, and an output file path as the variable arguments.
+# Input:
+#    - Model 'results/finalized_model.sav'
+#    - List of features 'results/feature_compare.csv'
+# Output:
+#    - Decision tree graph 'results/oil_spills_model.pdf'
+# Arguments:
+#     ARG1 = input file path
+#     ARG2 = output file path
+# Usage:
+#     "python src/4_model_viz.py results/ results/"
 
 import pickle
 import graphviz

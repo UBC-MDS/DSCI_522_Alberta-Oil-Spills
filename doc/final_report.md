@@ -16,6 +16,17 @@ The Data
 
 The data we used in this analysis was compiled and managed by the Energy Resources Conservation Board (ERCB) and spans 12 years, 2002-2013. To clean the data, we removed all incidents that did not have complete data about the five features or target cause types, and did not fall into our generalized source or substance categories.
 
+We will use the following contents from the data:
+
+| Column name   | datatype | Description                                         |
+|---------------|----------|-----------------------------------------------------|
+| cause         | String   | Identifier for a particular cause of spill          |
+| source        | String   | equipment source of the spill incident              |
+| location      | String   | location of the spill incident                      |
+| substance     | String   | substance of the spill incident                     |
+| volume        | Numeric  | volume of the substance spilled (unit: cubic meter) |
+| year\_quarter | Numeric  | quarter of the year for when the spill occured      |
+
 After cleaning our data set, we had 10,985 observations and produced the following table:
 
 |    X| date       | cause             | source   | location     | substance |  volume|  year\_quarter|
@@ -37,7 +48,7 @@ The majority of the spills (9,082 observations) were as a result of equipment fa
 
 *Figure 1: Overall Number of Spills by Each Cause Type*
 
-Due to the large difference in number of equipment failure versus operator error caused spills, we looked at proportions to visualize each factor in a comparative way. For example, on the location graph below you can see that almost 24% of all operator error caused spills occur in Bonnyville, whereas only 10% of all equipment failure caused spills occur in Bonnyville.
+Due to the large difference in the number of equipment failure versus operator error caused spills, we looked at proportions to visualize each factor in a comparative way. For example, on the location graph below you can see that almost 24% of all operator error caused spills occur in Bonnyville, whereas only 10% of all equipment failure caused spills occur in Bonnyville.
 
 <img src="../img/location_graph.png" alt="Fig 2: Location Graph" width="500"/>
 
@@ -76,9 +87,10 @@ We produced the following decision tree:
 
 The 10-fold cross validation test accuracy for our final decision tree was:
 
-|  The.CV.score.for.the.model.is|
-|------------------------------:|
-|                      0.8310169|
+| X.1               |   Score|
+|:------------------|-------:|
+| Training Accuracy |  0.8330|
+| Test Accuracy     |  0.8252|
 
 The Results
 -----------

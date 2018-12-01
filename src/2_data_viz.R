@@ -107,7 +107,7 @@ main <- function() {
   if(category == "volume") {
     volume_graph <- feature_graph(volume) +
       xlab("Volume Spilled (metres cubed)") +
-      scale_x_discrete(labels=c("0.1 to 10", "10+")) +
+      scale_x_discrete(labels=c("0.1 to 10 Cubic Meter", "10+ Cubic Meter")) +
       ggtitle("Proportions of Spills by Volume of Spilled")
 
     #' Save the `volume` proportions graph as an output file

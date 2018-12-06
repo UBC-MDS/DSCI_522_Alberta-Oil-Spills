@@ -10,8 +10,8 @@ Contributors
 Latest
 ------
 
--   Date: December 1, 2018
--   Release v3.0
+-   Date: December 8, 2018
+-   Release v4.0
 
 Overview
 --------
@@ -73,18 +73,30 @@ Dependencies
 
 **R & R Libraries:**
 
-- `rmarkdown`
-- `tidyverse`
-- `lubridate`
-- `gridExtra`
+- `R (version 3.5.1)`
+- `rmarkdown (version 1.10)`
+- `tidyverse (version 1.2.1)`
+- `lubridate (version 1.7.4)`
+- `gridExtra (version 2.3)`
 
 **Python & Python Libraries:**
 
-- `numpy`
-- `pandas`
-- `seaborn`
-- `matplotlib`
+- `Python (version 3.7.1)`
+- `numpy (version 1.15.1)`
+- `pandas (version 0.23.2)`
+- `seaborn (version 0.9.0)`
+- `matplotlib (version 3.0.2)`
 - `argparse`
 - `pickle`
-- `sklearn`
+- `scikit-learn/sklearn (version 0.20.1)`
 - `graphviz`
+
+
+Release History
+--------
+
+| Version | Description |
+| ------- | ----------- |
+| [V1.0](https://github.com/UBC-MDS/DSCI_522_Alberta-Oil-Spills/releases/tag/V1.0) | Initial Project Proposal |
+| [V2.0](https://github.com/UBC-MDS/DSCI_522_Alberta-Oil-Spills/releases/tag/V2.0) | Milestone 1 - Project Analysis First Draft Complete |
+| [V3.0](https://github.com/UBC-MDS/DSCI_522_Alberta-Oil-Spills/releases/tag/V3.0) | Milestone 2 - Makefile Automation Added & Project Analysis Edits |

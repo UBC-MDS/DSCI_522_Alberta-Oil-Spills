@@ -79,7 +79,7 @@ The Analysis
 
 In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation with the training data to pick a best depth. We tested the cross-validation model accuracy at the different depths, and the graphical comparison is shown as below:
 
-![Fig 7: Train Accuracy vs. Tree Depth](../results/depth_compare.png).
+<img src="../results/depth_compare.png" alt="Fig 7: Train Accuracy vs. Tree Depth" width="400"/>
 
 *Figure 7: Each training accuracy was obtained using 10-fold cross-validation on the training data (with random state=10). You can see the accuracy variations across different max\_depth settings of decision trees.*
 

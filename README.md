@@ -63,9 +63,9 @@ This report can be reproduced using Docker. To run the analysis using Docker:
 1. Clone/download this repository.
 2. Navigate to the root of this project in your terminal.
 3. Type the following command in your terminal (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer):
-`docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/alberta_oil_spills UBC-MDS/DSCI_522_Alberta-Oil-Spills make -C '/home/alberta_oil_spills' all`
+`docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/alberta_oil_spills alyciakb/dsci_522_alberta-oil-spills make -C '/home/alberta_oil_spills' all`
 4. To clean and remove files created by running the analysis:
-`docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/alberta_oil_spills UBC-MDS/DSCI_522_Alberta-Oil-Spills make -C '/home/alberta_oil_spills' clean`
+`docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/alberta_oil_spills alyciakb/dsci_522_alberta-oil-spills make -C '/home/alberta_oil_spills' clean`
 
 
 #### Reproduce with Makefile:

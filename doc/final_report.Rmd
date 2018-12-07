@@ -89,7 +89,7 @@ In order to rank the predictive quality of our factors, we first fit a decision 
 
 We produced the following decision tree *(you may need to zoom in to read the details of the tree)*: 
 
-![Fig 7: Decision Tree](../results/oil_spills_model.png)
+![Fig 7: Decision Tree](../results/spills_tree_model.png)
 
 *Figure 7: A decision tree of depth 4, used for determining cause type of an oil spill, based on the factors: field house location of spill, time of year, source of spill, substance spilled, and volume spilled. The orange boxes represent the decision tree choosing the target cause type "Equipment Failure", the blue boxes represent the decision tree choosing the target cause type "Operatore Error". The darker the blue or orange, the better the gini score and the more certain the decision tree is about the cause type, the lighter the boxes, the less certainty there is behind the cause type decision.*
 

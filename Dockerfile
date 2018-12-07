@@ -1,5 +1,6 @@
 # Docker file for DSCI_522_Alberta-Oil-Spills
-# Tiffany Timbers, Dec, 2017
+# Alycia Butterworth, Dec. 6, 2018
+# Adapted from a Dockerfile by Tiffany Timbers
 
 # use rocker/tidyverse as the base image and
 FROM rocker/tidyverse:3.3.1

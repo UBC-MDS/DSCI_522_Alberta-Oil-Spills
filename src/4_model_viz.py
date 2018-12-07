@@ -6,7 +6,7 @@
 #    - Model 'results/finalized_model.sav'
 #    - List of features 'results/feature_compare.csv'
 # Output:
-#    - Decision tree graph 'results/oil_spills_model.pdf'
+#    - Decision tree graph 'results/spills_tree_model.png'
 # Arguments:
 #     ARG1 = input file path
 #     ARG2 = output file path
@@ -41,7 +41,7 @@ def main():
     # 2. Graph drawing and exporting
     def save_and_show_decision_tree(model,
                                     class_names =  ['Equipment Failure', 'Operator Error'],
-                                    save_file_prefix = output_file_path+'oil_spills_model', **kwargs):
+                                    save_file_prefix = output_file_path+'spills_tree_model', **kwargs):
         """
         Saves the decision tree model as a pdf
         """
@@ -53,7 +53,7 @@ def main():
                                  filled=True, rounded=True,
                                  special_characters=True, **kwargs)
 
-        graph = graphviz.Source(dot_data)
+        graph = graphviz.Source(dot_data, format = 'png')
         graph.render(save_file_prefix)
         return graph
 

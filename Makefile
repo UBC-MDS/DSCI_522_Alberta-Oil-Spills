@@ -35,11 +35,7 @@ results : data/clean_data.csv src/3_model_fitting.py
 results_viz : results src/4_model_viz.py
 	python src/4_model_viz.py "./results/" "./results/"
 
-# step 5. convert oil_spills_model.pdf to oil_spills_model.png
-results/oil_spills_model.png : results results_viz
-	sips -s format png results/oil_spills_model.pdf --out results/oil_spills_model.png
-
-# step 6. render the final report
+# step 5. render the final report
 doc/final_report.md : doc/final_report.Rmd results results_viz results/oil_spills_model.png img
 	Rscript -e "rmarkdown::render('./doc/final_report.Rmd', 'github_document')"
 
@@ -61,8 +57,7 @@ clean:
 	rm -f results/location.csv
 	rm -f results/model_score.csv
 	rm -f results/oil_spills_model
-	rm -f results/oil_spills_model.pdf
-	rm -f results/oil_spills_model.png
+	rm -f results/spills_tree_model.png
 	rm -f results/source.csv
 	rm -f results/substance.csv
 	rm -f doc/final_report.md

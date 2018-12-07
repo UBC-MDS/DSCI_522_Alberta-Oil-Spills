@@ -56,7 +56,7 @@ We have provided a `Makefile` to run the all scripts in the correct order and pr
 3. Six small dataframes stored as csv files in the `results` folder.
 4. An image called `depth_compare.png`, that shows the results of the 10-fold cross validation, saved in the `results` folder.
 5. The decision tree code model, saved in the `results` folder as `final_model.sav`.
-6. A visual representation of the decision tree, saved as both a pdf and a png file in the `results` folder.
+6. A visual representation of the decision tree, called `spills_tree_model.png` a png file in the `results` folder.
 7. Rendered markdown and rendered html versions of the final analysis report, saved in the `doc` folder.
 
 #### Steps:
@@ -86,10 +86,10 @@ Dependencies
 - `pandas (version 0.23.2)`
 - `seaborn (version 0.9.0)`
 - `matplotlib (version 3.0.2)`
-- `argparse`
-- `pickle`
+- `argparse (included with python 3)`
+- `pickle (included with python 3)`
 - `scikit-learn/sklearn (version 0.20.1)`
-- `graphviz`
+- `graphviz (version 0.10.1)`
 
 
 Release History

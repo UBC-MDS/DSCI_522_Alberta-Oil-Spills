@@ -36,7 +36,7 @@ results_viz : results src/4_model_viz.py
 	python src/4_model_viz.py "./results/" "./results/"
 
 # step 5. render the final report
-doc/final_report.md : doc/final_report.Rmd results results_viz results/spills_tree_model.png img
+doc/final_report.md : doc/final_report.Rmd results results_viz img
 	Rscript -e "rmarkdown::render('./doc/final_report.Rmd', 'github_document')"
 
 #####################################

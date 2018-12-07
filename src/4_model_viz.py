@@ -40,7 +40,7 @@ def main():
 
     # 2. Graph drawing and exporting
     def save_and_show_decision_tree(model,
-                                    class_names =  ['Target 0', 'Target 1'],
+                                    class_names =  ['Equipment Failure', 'Operator Error'],
                                     save_file_prefix = output_file_path+'oil_spills_model', **kwargs):
         """
         Saves the decision tree model as a pdf
@@ -48,6 +48,8 @@ def main():
         dot_data = tree.export_graphviz(model, out_file=None,
                                  feature_names=feature_cols,
                                  class_names=class_names,
+                                 impurity = False,
+                                 rotate = True,
                                  filled=True, rounded=True,
                                  special_characters=True, **kwargs)
 

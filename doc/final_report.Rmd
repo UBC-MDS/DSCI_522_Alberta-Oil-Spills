@@ -1,7 +1,7 @@
 ---
 title: "Alberta Oil Spills Final Report"
 authors: "Alycia Butterworth and Huijue Chen"
-date: "Nov. 24, 2018"
+date: "Dec. 7, 2018"
 output: github_document
 ---
 
@@ -89,17 +89,19 @@ In order to rank the predictive quality of our factors, we first fit a decision 
 
 ![Fig 7: Train Accuracy vs. Tree Depth](../results/depth_compare.png).
 
-*Figure 7: Each train accuracy was obtained using 10-fold cross-validation on the train data (with random state=10). We can see the accuracy varies across different max_depth setting of decision trees.*
+*Figure 7: Each training accuracy was obtained using 10-fold cross-validation on the training data (with random state=10). You can see the accuracy variations across different max_depth settings of decision trees.*
 
-As the highest train accuracy was reached at the maximum depth of 4 for the decision tree, we produced the following decision tree with setting the hyperparameter(max_depth) as 4 *(you may need to zoom in to read the details of the tree)*:
+As the highest training accuracy was reached at the maximum depth of 4 for the decision tree, we produced the following decision tree with setting the hyperparameter `max_depth = 4`:
 
 ![Fig 8: Decision Tree](../results/spills_tree_model.png)
 
 *Figure 8: A decision tree of depth 4, used for determining cause type of an oil spill, based on the factors: field house location of spill, time of year, source of spill, substance spilled, and volume spilled. The orange boxes represent the decision tree choosing the target cause type "Equipment Failure", the blue boxes represent the decision tree choosing the target cause type "Operatore Error". The darker the blue or orange, the better the gini score and the more certain the decision tree is about the cause type, the lighter the boxes, the less certainty there is behind the cause type decision.*
 
-There are four splits in this decision tree: the first one is on the feature `source`, the second one is on two features `source` and `location`, then it splits on three features `substance`, `year_quarter` and `volume`, the last one is on `location`, `substance`, and `year_quarter`. When the tree first splits on `source`, it splits on the value of 1.5. Since we converted `source` from categorical variable to numerical variable earlier, the split actually indicates that if the source of the oil spill is 0 or 1, i.e. "battery" or "pipeline", it would belongs to the left tree, otherwise, the right tree are the oil spills with the source as 2 ("well").
+There are four splits in this decision tree: the first one is on the feature `source`, the second one is on two features `source` and `location`, then it splits on three features `substance`, `year_quarter` and `volume`, the last one is on `location`, `substance`, and `year_quarter`. When the tree first splits on `source`, it splits on the value of 1.5. Since we converted `source` from categorical variable to numerical variable earlier, the split actually indicates that if the source of the oil spill is 0 or 1, i.e. "battery" or "pipeline", it would belongs to the left tree, otherwise, the right tree are the oil spills with the source as 2, i.e. "well".
 
-The training and test accuracy scores for our final decision tree were:
+The model is significantly more likely to predict "equipment failure" as the cause of the spill (as indicated by the orange coloured nodes in the model) because the majority of spills occurring in Alberta are caused by equipment failure. However, in specific cases, the model will predict "operator error" (blue node) as the cause of the spill.
+
+After producing our model, we scored its accuracy. The training and test accuracy scores for our final decision tree are:
 
 ```{r model accuracy, echo=FALSE}
 model_accuracy <- read.csv("../results/model_score.csv")
@@ -115,7 +117,7 @@ We used our decision tree model to calculate the gini scores for each of the fiv
 
 ```{r rank, echo=FALSE}
 rank <- read.csv("../results/feature_compare.csv")
-score <- as.character(rank[1,2:6])
+score <- as.character(round(rank[1,2:6], 5))
 rank <- colnames(rank[2:6])
 rank <- data.frame('Rank' = c(1, 2, 3, 4, 5), 'Factor' = rank, 'Gini Importance' = score)
 knitr::kable(head(rank))
@@ -125,7 +127,7 @@ knitr::kable(head(rank))
 
 The Gini importance, also known as Mean Decrease in Impurity (MDI), calculates feature importance as the proportion of the amount of splits that include the feature to the number of samples it splits. Higher value represents higher importance of a feature.
 
-Our results show that the best predictor in our analysis was the source of the spill. This result is compatible with our data visualization at the start of this report. You can see in Figure 4 that there are large differences between the two cause types for each variable within the `source` factor.
+Our results show that the best predictor in our analysis was the `source` of the spill. As you can see, the gini importance score for `source` is ten times higher than the next two best predictors (`location` and `substance`). Therefore, `source` is a significantly better predictor than any of the other features we tested on. This result is compatible with our data visualization at the start of this report. You can see in Figure 4 that there are large differences between the two cause types for each variable within the `source` factor.
 
 The question we set out to answer with this project was: "What are the top three predictors of the cause of an oil spill incident in Alberta?"  Based on our analysis, the top predictors are:
 

@@ -18,6 +18,7 @@ import graphviz
 import pandas as pd
 from sklearn import tree
 import argparse
+import os
 
 def get_args():
 
@@ -63,4 +64,4 @@ if __name__ == "__main__":
 
 # ============
 # Unit test for save_and_show_decision_tree()
-assert os.path.isfile("results/figure/spills_tree_model.png"), 'Decision tree visualization is not created'
+assert os.path.isfile("results/spills_tree_model.png"), 'Decision tree visualization is not created'

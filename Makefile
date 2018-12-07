@@ -36,7 +36,7 @@ results_viz : results src/4_model_viz.py
 	python src/4_model_viz.py "./results/" "./results/"
 
 # step 5. render the final report
-doc/final_report.md : doc/final_report.Rmd results results_viz results/oil_spills_model.png img
+doc/final_report.md : doc/final_report.Rmd results results_viz results/spills_tree_model.png img
 	Rscript -e "rmarkdown::render('./doc/final_report.Rmd', 'github_document')"
 
 #####################################
@@ -56,7 +56,7 @@ clean:
 	rm -f results/finalized_model.sav
 	rm -f results/location.csv
 	rm -f results/model_score.csv
-	rm -f results/oil_spills_model
+	rm -f results/spills_tree_model
 	rm -f results/spills_tree_model.png
 	rm -f results/source.csv
 	rm -f results/substance.csv

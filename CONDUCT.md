@@ -11,4 +11,4 @@ Project maintainers have the right and responsibility to remove, edit, or reject
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening an issue.
 
-This Code of Conduct is adapted from the Contributor Covenant (<http:contributor-covenant.org>), version 1.0.0, available at <http://contributor-covenant.org/version/1/0/0/>
+This Code of Conduct is adapted from the [Contributor Covenant](http:contributor-covenant.org), [version 1.0.0](http://contributor-covenant.org/version/1/0/0/).

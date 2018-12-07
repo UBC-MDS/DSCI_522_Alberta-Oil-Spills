@@ -1,8 +1,20 @@
 # Docker file for DSCI_522_Alberta-Oil-Spills
 # Alycia Butterworth, Dec. 6, 2018
 # Adapted from a Dockerfile by Tiffany Timbers
+#
+# Using docker, this file creates an environment called `alyciakb/dsci_522_alberta-oil-spills`
+# The environment includes correct versions of all dependencies required
+# to reproduce the DSCI_522_Alberta-Oil-Spills in its entirety
+#
+# Usage: 
+# Create the environment and run the makefile to reproduce analysis:
+# `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/alberta_oil_spills alyciakb/dsci_522_alberta-oil-spills make -C '/home/alberta_oil_spills' all`
+#
+# Remove files created by running the analysis:
+# `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/alberta_oil_spills alyciakb/dsci_522_alberta-oil-spills make -C '/home/alberta_oil_spills' clean`
 
-# use rocker/tidyverse as the base image and
+
+# use rocker/tidyverse as the base image
 FROM rocker/tidyverse:3.3.1
 
 # then install the cowsay package

@@ -77,13 +77,19 @@ A note about how we chose our spill volume groups (Figure 6) for the analysis: W
 The Analysis
 ------------
 
-In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation with the training data to pick a best depth. You can see the graphical comparison of cross-validation model accuracy at the different depths at [results/depth\_compare](../results/depth_compare.png).
+In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation with the training data to pick a best depth. We tested the cross-validation model accuracy at the different depths, and the graphical comparison is shown as below:
 
-We produced the following decision tree *(you may need to zoom in to read the details of the tree)*:
+![Fig 7: Train Accuracy vs. Tree Depth](../results/depth_compare.png).
 
-![Fig 7: Decision Tree](../results/spills_tree_model.png)
+*Figure 7: Each train accuracy was obtained using 10-fold cross-validation on the train data (with random state=10). We can see the accuracy varies across different max\_depth setting of decision trees.*
 
-*Figure 7: A decision tree of depth 4, used for determining cause type of an oil spill, based on the factors: field house location of spill, time of year, source of spill, substance spilled, and volume spilled. The orange boxes represent the decision tree choosing the target cause type "Equipment Failure", the blue boxes represent the decision tree choosing the target cause type "Operatore Error". The darker the blue or orange, the better the gini score and the more certain the decision tree is about the cause type, the lighter the boxes, the less certainty there is behind the cause type decision.*
+As the highest train accuracy was reached at the maximum depth of 4 for the decision tree, we produced the following decision tree with setting the hyperparameter(max\_depth) as 4 *(you may need to zoom in to read the details of the tree)*:
+
+![Fig 8: Decision Tree](../results/spills_tree_model.png)
+
+*Figure 8: A decision tree of depth 4, used for determining cause type of an oil spill, based on the factors: field house location of spill, time of year, source of spill, substance spilled, and volume spilled. The orange boxes represent the decision tree choosing the target cause type "Equipment Failure", the blue boxes represent the decision tree choosing the target cause type "Operatore Error". The darker the blue or orange, the better the gini score and the more certain the decision tree is about the cause type, the lighter the boxes, the less certainty there is behind the cause type decision.*
+
+There are four splits in this decision tree: the first one is on the feature `source`, the second one is on two features `source` and `location`, then it splits on three features `substance`, `year_quarter` and `volume`, the last one is on `location`, `substance`, and `year_quarter`. When the tree first splits on `source`, it splits on the value of 1.5. Since we converted `source` from categorical variable to numerical variable earlier, the split actually indicates that if the source of the oil spill is 0 or 1, i.e. "battery" or "pipeline", it would belongs to the left tree, otherwise, the right tree are the oil spills with the source as 2 ("well").
 
 The training and test accuracy scores for our final decision tree were:
 
@@ -99,15 +105,17 @@ The Results
 
 We used our decision tree model to calculate the gini scores for each of the five factors and ranked them as most predictive to least:
 
-|  Rank| Factor        |
-|-----:|:--------------|
-|     1| source        |
-|     2| location      |
-|     3| substance     |
-|     4| volume        |
-|     5| year\_quarter |
+|  Rank| Factor        | Gini.Importance      |
+|-----:|:--------------|:---------------------|
+|     1| source        | 0.0338827157788406   |
+|     2| location      | 0.00382580366326345  |
+|     3| substance     | 0.00338029181044019  |
+|     4| volume        | 0.00192772543038385  |
+|     5| year\_quarter | 0.000862815338991741 |
 
 *Table 4: Ranking the five factors: location, time of year, source of spill, substance spilled, and volume of substance spilled, from most to least predictive based on their decision tree scores.*
+
+The Gini importance, also known as Mean Decrease in Impurity (MDI), calculates feature importance as the proportion of the amount of splits that include the feature to the number of samples it splits. Higher value represents higher importance of a feature.
 
 Our results show that the best predictor in our analysis was the source of the spill. This result is compatible with our data visualization at the start of this report. You can see in Figure 4 that there are large differences between the two cause types for each variable within the `source` factor.
 

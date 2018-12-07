@@ -60,3 +60,7 @@ def main():
     graph = save_and_show_decision_tree(model)
 if __name__ == "__main__":
     main()
+
+# ============
+# Unit test for save_and_show_decision_tree()
+assert os.path.isfile("results/figure/spills_tree_model.png"), 'Decision tree visualization is not created'

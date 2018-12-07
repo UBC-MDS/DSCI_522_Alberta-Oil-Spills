@@ -26,9 +26,9 @@ We will use the following contents from the data:
 | Column Names | Data Type | Description |
 | --- | -- | -- |
 | cause | String | Identifier for a particular cause of spill |
-| source | String | Equipment source of the spill incident| 
-| location | String | Location of the spill incident| 
-| substance | String | Substance of the spill incident| 
+| source | String | Equipment source of the spill incident|
+| location | String | Location of the spill incident|
+| substance | String | Substance of the spill incident|
 | volume | Numeric | Volume of the substance spilled (unit: cubic metre) |
 | year_quarter | Numeric | Quarter of the year for when the spill occurred |
 
@@ -85,13 +85,19 @@ A note about how we chose our spill volume groups (Figure 6) for the analysis: W
 
 ## The Analysis
 
-In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation with the training data to pick a best depth. You can see the graphical comparison of cross-validation model accuracy at the different depths at [results/depth_compare](../results/depth_compare.png).
+In order to rank the predictive quality of our factors, we first fit a decision tree model. We represented each of our categorical variables as numbers. *If you are interested in which numbers are associated with which variable, you can find the data in csv files within the [results](../results) folder.* We split our data into a training group (80% of the data) and a test group (20% of the data). We tested many potential depths and used 10-fold cross validation with the training data to pick a best depth. We tested the cross-validation model accuracy at the different depths, and the  graphical comparison is shown as below:
 
-We produced the following decision tree *(you may need to zoom in to read the details of the tree)*: 
+![Fig 7: Train Accuracy vs. Tree Depth](../results/depth_compare.png).
 
-![Fig 7: Decision Tree](../results/spills_tree_model.png)
+*Figure 7: Each train accuracy was obtained using 10-fold cross-validation on the train data (with random state=10). We can see the accuracy varies across different max_depth setting of decision trees.*
 
-*Figure 7: A decision tree of depth 4, used for determining cause type of an oil spill, based on the factors: field house location of spill, time of year, source of spill, substance spilled, and volume spilled. The orange boxes represent the decision tree choosing the target cause type "Equipment Failure", the blue boxes represent the decision tree choosing the target cause type "Operatore Error". The darker the blue or orange, the better the gini score and the more certain the decision tree is about the cause type, the lighter the boxes, the less certainty there is behind the cause type decision.*
+As the highest train accuracy was reached at the maximum depth of 4 for the decision tree, we produced the following decision tree with setting the hyperparameter(max_depth) as 4 *(you may need to zoom in to read the details of the tree)*:
+
+![Fig 8: Decision Tree](../results/spills_tree_model.png)
+
+*Figure 8: A decision tree of depth 4, used for determining cause type of an oil spill, based on the factors: field house location of spill, time of year, source of spill, substance spilled, and volume spilled. The orange boxes represent the decision tree choosing the target cause type "Equipment Failure", the blue boxes represent the decision tree choosing the target cause type "Operatore Error". The darker the blue or orange, the better the gini score and the more certain the decision tree is about the cause type, the lighter the boxes, the less certainty there is behind the cause type decision.*
+
+There are four splits in this decision tree: the first one is on the feature `source`, the second one is on two features `source` and `location`, then it splits on three features `substance`, `year_quarter` and `volume`, the last one is on `location`, `substance`, and `year_quarter`. When the tree first splits on `source`, it splits on the value of 1.5. Since we converted `source` from categorical variable to numerical variable earlier, the split actually indicates that if the source of the oil spill is 0 or 1, i.e. "battery" or "pipeline", it would belongs to the left tree, otherwise, the right tree are the oil spills with the source as 2 ("well").
 
 The training and test accuracy scores for our final decision tree were:
 
@@ -109,12 +115,15 @@ We used our decision tree model to calculate the gini scores for each of the fiv
 
 ```{r rank, echo=FALSE}
 rank <- read.csv("../results/feature_compare.csv")
-rank <- colnames(rank[2:6]) 
-rank <- data.frame('Rank' = c(1, 2, 3, 4, 5), 'Factor' = rank)
+score <- as.character(rank[1,2:6])
+rank <- colnames(rank[2:6])
+rank <- data.frame('Rank' = c(1, 2, 3, 4, 5), 'Factor' = rank, 'Gini Importance' = score)
 knitr::kable(head(rank))
 ```
 
 *Table 4: Ranking the five factors: location, time of year, source of spill, substance spilled, and volume of substance spilled, from most to least predictive based on their decision tree scores.*
+
+The Gini importance, also known as Mean Decrease in Impurity (MDI), calculates feature importance as the proportion of the amount of splits that include the feature to the number of samples it splits. Higher value represents higher importance of a feature.
 
 Our results show that the best predictor in our analysis was the source of the spill. This result is compatible with our data visualization at the start of this report. You can see in Figure 4 that there are large differences between the two cause types for each variable within the `source` factor.
 
@@ -129,9 +138,9 @@ The question we set out to answer with this project was: "What are the top three
 
 We understand that our analysis has its limitations:
 
-- We only looked at five factors, but there are likely many other factors that relate to the cause of an oil spill. 
+- We only looked at five factors, but there are likely many other factors that relate to the cause of an oil spill.
 - The data set was missing values in many places, which meant that we are only taking into consideration spills that we have full information on and ignoring all spills that we have only partial information about.
-- We did not take into consideration the quantity of oil or gas being produced or moved by the location or sources. 
+- We did not take into consideration the quantity of oil or gas being produced or moved by the location or sources.
 - We addressed the substance spilled and volume spilled as separate entities, but it might be useful to think of them together (e.g. is differences in the average volumes spilled of each individual substance depending on the cause?)
 - There is likely a more accurate machine learning approach to answer this question, but we haven't learned it yet.
 
@@ -154,5 +163,3 @@ The more we understand about the factors related to spill incidents, the more we
 2. Young, Leslie (2013), *[Crude Awakening: 37 years of oil spills in Alberta](https://globalnews.ca/news/571494/introduction-37-years-of-oil-spills-in-alberta/)*, Global News. Retrieved: November 2018.
 3. *[Energy and the Economy](https://www.nrcan.gc.ca/energy/facts/energy-economy/20062#L2)*, Natural Resources Canada. Retrieved: November 2018.
 4. *[Alberta's Oil Reserves Compared to Other Countries](https://open.alberta.ca/dataset/4ad7b5c8-8fdf-42a4-bec4-e57fae9f058e/resource/e5dd5f00-5139-4b0d-ba45-4990824b81af/download/did-you-know-fact-sheet-7-sept28.pdf)*, Government of Alberta. Retrieved: November 2018.
-
-

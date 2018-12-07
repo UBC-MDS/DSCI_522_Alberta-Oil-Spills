@@ -25,9 +25,9 @@ RUN apt-get install -y python3-tk
 RUN pip3 install numpy
 RUN pip3 install pandas
 RUN pip3 install seaborn
-RUN pip3 install argparse
 RUN pip3 install scikit-learn
-RUN pip3 install graphviz
+RUN pip3 install graphviz \
+  && apt-get install -y graphviz libgraphviz-dev
 RUN pip3 install matplotlib
 
 # install R packages

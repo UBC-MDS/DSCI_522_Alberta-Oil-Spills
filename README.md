@@ -82,7 +82,7 @@ This report can be run in the Docker environment or without Docker. To run this 
 
 Dependency diagram of Makefile:
 
-<img src="Makefile.png" alt="dependency diagram" height="200">
+<img src="Makefile.png" alt="dependency diagram" height="300">
 
 Dependencies
 --------

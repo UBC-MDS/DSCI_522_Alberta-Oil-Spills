@@ -7,6 +7,8 @@
 # to reproduce the DSCI_522_Alberta-Oil-Spills in its entirety
 #
 # Usage: 
+# Build the docker image:
+# docker build --tag dsci_522_alberta-oil-spills:0.1 .
 # Create the environment and run the makefile to reproduce analysis:
 # `docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/alberta_oil_spills alyciakb/dsci_522_alberta-oil-spills make -C '/home/alberta_oil_spills' all`
 #
@@ -45,3 +47,10 @@ RUN pip3 install matplotlib
 # install R packages
 RUN R -e "install.packages('lubridate')"
 RUN R -e "install.packages('gridExtra')"
+
+# clone, build makefile2graph
+# and copy key makefile2graph files to usr/bin
+RUN git clone https://github.com/lindenb/makefile2graph.git
+RUN make -C makefile2graph/.
+RUN cp makefile2graph/makefile2graph usr/bin
+RUN cp makefile2graph/make2graph usr/bin

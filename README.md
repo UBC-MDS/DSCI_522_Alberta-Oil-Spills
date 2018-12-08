@@ -23,9 +23,9 @@ We will use the following contents from the data:
 | Column name | datatype | Description |
 | --- | -- | -- |
 | cause | String | Identifier for a particular cause of spill |
-| source | String | equipment source of the spill incident| 
-| location | String | location of the spill incident| 
-| substance | String | substance of the spill incident| 
+| source | String | equipment source of the spill incident|
+| location | String | location of the spill incident|
+| substance | String | substance of the spill incident|
 | volume | Numeric | volume of the substance spilled (unit: cubic metre) |
 | year_quarter | Numeric | quarter of the year for when the spill occurred |
 
@@ -80,6 +80,9 @@ This report can be run in the Docker environment or without Docker. To run this 
 3. Type the following command in your terminal:  `make all`.
 4. To remove files created by the  `Makefile`, type the following command in your terminal: `make clean`.
 
+Dependency diagram of Makefile:
+
+<img src="Makefile.png" alt="dependency diagram" height="200">
 
 Dependencies
 --------

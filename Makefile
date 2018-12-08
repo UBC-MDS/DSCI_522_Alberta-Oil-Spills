@@ -32,11 +32,11 @@ results : data/clean_data.csv src/3_model_fitting.py
 	python src/3_model_fitting.py "./data/clean_data.csv"  "./results/"
 
 # step 4. Decision tree visualization
-results_viz : results src/4_model_viz.py
-	python src/4_model_viz.py "./results/" "./results/"
+results_viz : results results/finalized_model.sav src/4_model_viz.py
+	python src/4_model_viz.py "./results/finalized_model.sav" "./results/"
 
 # step 5. render the final report
-doc/final_report.md : doc/final_report.Rmd results results_viz img
+doc/final_report.md : doc/final_report.rmd results results_viz img
 	Rscript -e "rmarkdown::render('./doc/final_report.Rmd', 'github_document')"
 
 #####################################

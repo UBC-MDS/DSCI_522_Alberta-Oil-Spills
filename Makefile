@@ -39,6 +39,11 @@ results_viz : results results/finalized_model.sav src/4_model_viz.py
 doc/final_report.md : doc/final_report.rmd results results_viz img
 	Rscript -e "rmarkdown::render('./doc/final_report.Rmd', 'github_document')"
 
+# step 6. generate dependency diagram
+Makefile.png: Makefile
+	makefile2graph > Makefile.dot
+	dot -Tpng Makefile.dot -o Makefile.png
+
 #####################################
 # Remove all files
 #####################################

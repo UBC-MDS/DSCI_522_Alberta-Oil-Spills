@@ -35,9 +35,9 @@ def main():
     input_file_path, output_file_path = get_args()
 
     # 1. Model Importing
-    model = pickle.load(open(input_file_path + 'finalized_model.sav', 'rb'))
-    features = pd.read_csv(input_file_path+'feature_compare.csv')
-    feature_cols= list(features)[1:]
+    model = pickle.load(open(input_file_path, 'rb'))
+#    features = pd.read_csv(input_file_path+'feature_compare.csv')
+    feature_cols= ['source', 'location', 'substance', 'volume', 'year_quarter']
 
     # 2. Graph drawing and exporting
     def save_and_show_decision_tree(model,

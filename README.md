@@ -34,7 +34,7 @@ Our findings showed that the top three predictors for the cause of an oil spill 
 2. field location
 3. type of substance spilled
 
-The full final report that includes our analysis and interpretation, limitations, and future directions can be found within the [doc folder](doc). The report also summarizes and visualizes our original data, visualizes the decision tree model created for this project and its accuracy, and the results. The report and scripts in this project can be run by the user within their terminal. Please see the **Procedure** section below for instructions.
+The full final report that includes our analysis and interpretation, limitations, and future directions can be found within the [doc folder](doc). The report also summarizes and visualizes our original data, visualizes the decision tree model created for this analysis, discuesses its accuracy and the results. This analysis can be fully reproduced by a user within their terminal. Please see the **Procedure** section below for instructions.
 
 Procedure
 --------
